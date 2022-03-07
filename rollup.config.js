@@ -28,16 +28,16 @@ const external = [];
 
 /** @type {import('rollup').RollupOptions} */
 const config = [
-  {
-    input: resolve(__dirname, './src/index.ts'),
-    output: {
-      file: resolve(__dirname, pkg.main),
-      format: 'cjs',
-      sourcemap: true,
-    },
-    external,
-    plugins,
-  },
+  // {
+  //   input: resolve(__dirname, './src/index.ts'),
+  //   output: {
+  //     file: resolve(__dirname, pkg.main),
+  //     format: 'cjs',
+  //     sourcemap: true,
+  //   },
+  //   external,
+  //   plugins,
+  // },
   {
     input: resolve(__dirname, './src/cli.ts'),
     output: {

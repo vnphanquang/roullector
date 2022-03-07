@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 
-import { collect } from '$commands/collect';
+import { collectCli } from '$commands/collect/collect.cli';
 
 const program = new Command();
-program.addCommand(collect());
+program.addCommand(collectCli());
 program.parse(process.argv);
