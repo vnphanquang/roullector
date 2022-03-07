@@ -1,0 +1,11 @@
+{
+  "name": "roullector",
+  "version": "0.1.0",
+  "description": "Collect and generate map from file-based routers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Quang Phan",
+  "license": "MIT"
+}
