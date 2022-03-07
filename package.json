@@ -4,8 +4,23 @@
   "description": "Collect and generate map from file-based routers",
   "main": "index.js",
   "scripts": {
+    "lint:es": "eslint src --ext .ts",
+    "prettier": "prettier '**/*.{ts,js,json}'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Quang Phan",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
+    "eslint": "^8.10.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-modules-newline": "^0.0.6",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "@typescript-eslint/parser": "^5.13.0"
+  }
 }
