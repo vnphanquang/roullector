@@ -9,8 +9,6 @@ export type CollectOptions = {
   ignorePatterns: (string|RegExp)[];
   /** route data output directory path */
   outDir: string;
-  /** whether to output utils in typescript */
-  typescript: boolean;
   /** prints more info during operation */
   verbose: boolean;
   /** how to transform route key */
@@ -19,6 +17,10 @@ export type CollectOptions = {
   depth: number;
   /** key to save path for directories with no index file */
   dirkey: string;
+  /** generate utils for building path with arguments */
+  utils: boolean;
+  /** whether to output files in typescript */
+  typescript: boolean;
 };
 
 export type CliCollectOptions = Modify<CollectOptions, {

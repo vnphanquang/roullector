@@ -52,8 +52,13 @@ export function collectCli() {
       defaultCliCollectOptions.dirkey,
     )
     .option(
-      '-t, --typescript',
-      'outputs generated files in typescript',
+      'u, --utils',
+      'how to generate utils for building path with arguments',
+      defaultCliCollectOptions.utils,
+    )
+    .option(
+      '-u, --typescript',
+      'outputs util files in typescript',
       defaultCliCollectOptions.typescript,
     )
     .option(

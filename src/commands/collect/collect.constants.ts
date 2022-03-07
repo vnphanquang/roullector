@@ -24,6 +24,7 @@ export const defaultCollectOptions: CollectOptions = {
   verbose: false,
   depth: Infinity,
   dirkey: '__dir',
+  utils: true,
 };
 
 export const defaultCliCollectOptions: CliCollectOptions = {
