@@ -54,16 +54,7 @@ module.exports = {
       },
     ],
     "import/prefer-default-export": "off",
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-    ],
+    "import/extensions": [ "off", "never" ],
     "import/order": [
       "error",
       {
@@ -77,7 +68,12 @@ module.exports = {
           "object",
           "unknown",
         ],
-        pathGroups: [],
+        pathGroups: [
+          {
+            pattern: "$*/**",
+            group: "internal",
+          },
+        ],
         "newlines-between": "always",
         pathGroupsExcludedImportTypes: [],
         alphabetize: {

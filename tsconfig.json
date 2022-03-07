@@ -1,21 +1,18 @@
 {
   "$schema": "http://json.schemastore.org/tsconfig",
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.d.ts"],
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "ESNext",
     "target": "ES6",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "typeRoots": ["node_modules/@types"],
     "types": ["node"],
     "incremental": true,
-    "outDir": "./dist",
     "declaration": true,
-    "declarationDir": "./dist/types",
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "$commands/*": ["./src/commands/*"]
+    }
   }
 }

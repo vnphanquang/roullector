@@ -57,6 +57,8 @@ jspm_packages/
 # Build target
 dist/
 build/
+bin/
+lib/
 
 # vscode
 .vscode/
