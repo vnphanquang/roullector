@@ -1,7 +1,8 @@
-/* eslint-disable no-useless-escape */
 import {
   writeFileSync,
   readFileSync,
+  existsSync,
+  mkdirSync,
 } from 'fs';
 import { resolve } from 'path';
 
@@ -9,11 +10,11 @@ import { transpile } from 'typescript';
 
 import type { CollectOptions } from '$commands/collect/collect.types';
 
-export function generateUtils(options: CollectOptions) {
+export function generateRouteUtil(options: CollectOptions) {
   const { outDir, typescript } = options;
   let source = '';
 
-  const ts = readFileSync(resolve(__dirname, './route.ts'), 'utf-8');
+  const ts = readFileSync(resolve(__dirname, './source.ts'), 'utf-8');
 
   if (typescript) {
     source =
@@ -31,9 +32,15 @@ ${js}
 
   const outputPath = resolve(outDir, 'index.' + (typescript ? 'ts' : 'js'));
 
+  if (!existsSync(outDir)) {
+    mkdirSync(outDir, { recursive: true });
+  }
+
   writeFileSync(
     outputPath,
     source,
     { encoding: 'utf-8' },
   );
+
+  return outputPath;
 }

@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generate JSON with a custom extension matcher: generateJSON: custom extension matcher 1`] = `"{}"`;
+
+exports[`generate JSON with custom dirkey: __customDir__: generateJSON: custom dirkey 1`] = `
+"{
+  \\"admin\\": {
+    \\"users\\": {
+      \\"[id]\\": {
+        \\"index\\": \\"/admin/users/[id]\\"
+      },
+      \\"assets\\": {
+        \\"index\\": \\"/admin/users/assets\\",
+        \\"photos\\": {
+          \\"[id]\\": {
+            \\"index\\": \\"/admin/users/assets/photos/[id]\\"
+          },
+          \\"__customDir__\\": \\"/admin/users/assets/photos\\"
+        },
+        \\"posts\\": {
+          \\"youtube\\": {
+            \\"[id]\\": \\"/admin/users/assets/posts/youtube/[id]\\",
+            \\"[slug]\\": \\"/admin/users/assets/posts/youtube/[slug]\\",
+            \\"__customDir__\\": \\"/admin/users/assets/posts/youtube\\"
+          },
+          \\"__customDir__\\": \\"/admin/users/assets/posts\\"
+        }
+      },
+      \\"__customDir__\\": \\"/admin/users\\"
+    },
+    \\"__customDir__\\": \\"/admin\\"
+  },
+  \\"index\\": \\"/\\",
+  \\"me\\": \\"/me\\",
+  \\"signIn\\": \\"/signIn\\",
+  \\"signUp\\": \\"/signUp\\"
+}"
+`;
+
+exports[`generate JSON with custom ignorePatterns: ^_,^assets: generateJSON: custom ignorePatterns 1`] = `
+"{
+  \\"admin\\": {
+    \\"users\\": {
+      \\"[id]\\": {
+        \\"index\\": \\"/admin/users/[id]\\"
+      },
+      \\"__dir\\": \\"/admin/users\\"
+    },
+    \\"__dir\\": \\"/admin\\"
+  },
+  \\"index\\": \\"/\\",
+  \\"me\\": \\"/me\\",
+  \\"signIn\\": \\"/signIn\\",
+  \\"signUp\\": \\"/signUp\\"
+}"
+`;
+
+exports[`generate JSON with default options: generateJSON: default 1`] = `
+"{
+  \\"admin\\": {
+    \\"users\\": {
+      \\"[id]\\": {
+        \\"index\\": \\"/admin/users/[id]\\"
+      },
+      \\"assets\\": {
+        \\"index\\": \\"/admin/users/assets\\",
+        \\"photos\\": {
+          \\"[id]\\": {
+            \\"index\\": \\"/admin/users/assets/photos/[id]\\"
+          },
+          \\"__dir\\": \\"/admin/users/assets/photos\\"
+        },
+        \\"posts\\": {
+          \\"youtube\\": {
+            \\"[id]\\": \\"/admin/users/assets/posts/youtube/[id]\\",
+            \\"[slug]\\": \\"/admin/users/assets/posts/youtube/[slug]\\",
+            \\"__dir\\": \\"/admin/users/assets/posts/youtube\\"
+          },
+          \\"__dir\\": \\"/admin/users/assets/posts\\"
+        }
+      },
+      \\"__dir\\": \\"/admin/users\\"
+    },
+    \\"__dir\\": \\"/admin\\"
+  },
+  \\"index\\": \\"/\\",
+  \\"me\\": \\"/me\\",
+  \\"signIn\\": \\"/signIn\\",
+  \\"signUp\\": \\"/signUp\\"
+}"
+`;
+
+exports[`generate JSON with depth of 1: generateJSON: depth 1 1`] = `
+"{
+  \\"index\\": \\"/\\",
+  \\"me\\": \\"/me\\",
+  \\"signIn\\": \\"/signIn\\",
+  \\"signUp\\": \\"/signUp\\"
+}"
+`;

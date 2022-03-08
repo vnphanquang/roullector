@@ -2,6 +2,8 @@ import {
   statSync,
   readdirSync,
   writeFileSync,
+  existsSync,
+  mkdirSync,
 } from 'fs';
 import {
   basename,
@@ -70,11 +72,21 @@ export function extractRouteMapping(options: CollectOptions, inputDir: string = 
 }
 
 export function generateJSON(options: CollectOptions) {
-  const map = extractRouteMapping(options);
-  const outputPath = resolve(options.outDir, 'routes.json');
-  writeFileSync(
-    outputPath,
-    JSON.stringify(map, null, 2), // spacing level = 2
-    { encoding: 'utf-8' },
-  );
+  const { inDir, outDir } = options;
+  let outputPath = null;
+  if (existsSync(inDir)) {
+    const map = extractRouteMapping(options);
+    outputPath = resolve(outDir, 'routes.json');
+
+    if (!existsSync(outDir)) {
+      mkdirSync(outDir, { recursive: true });
+    }
+
+    writeFileSync(
+      outputPath,
+      JSON.stringify(map, null, 2), // spacing level = 2
+      { encoding: 'utf-8' },
+    );
+  }
+  return outputPath;
 }

@@ -14,6 +14,7 @@ specifiers:
   eslint-plugin-modules-newline: ^0.0.6
   eslint-plugin-prettier: ^4.0.0
   jest: ^27.5.1
+  memfs: ^3.4.1
   npm-run-all: ^4.1.5
   prettier: ^2.5.1
   rollup: ^2.69.2
@@ -25,6 +26,7 @@ specifiers:
   ttypescript: ^1.5.13
   typescript: ^4.6.2
   typescript-transform-paths: ^3.3.1
+  unionfs: ^4.4.0
 
 dependencies:
   commander: 9.0.0
@@ -43,6 +45,7 @@ devDependencies:
   eslint-plugin-modules-newline: 0.0.6
   eslint-plugin-prettier: 4.0.0_eslint@8.10.0+prettier@2.5.1
   jest: 27.5.1_ts-node@10.7.0
+  memfs: 3.4.1
   npm-run-all: 4.1.5
   prettier: 2.5.1
   rollup: 2.70.0
@@ -53,6 +56,7 @@ devDependencies:
   ttypescript: 1.5.13_ts-node@10.7.0+typescript@4.6.2
   typescript: 4.6.2
   typescript-transform-paths: 3.3.1_typescript@4.6.2
+  unionfs: 4.4.0
 
 packages:
 
@@ -2293,6 +2297,10 @@ packages:
       minipass: 3.1.6
     dev: true
 
+  /fs-monkey/1.0.3:
+    resolution: {integrity: sha512-cybjIfiiE+pTWicSCLFHSrXZ6EilF30oh91FDP9S2B051prEa7QWfrVTQm10/dDpswBDXZugPa1Ogu8Yh+HV0Q==}
+    dev: true
+
   /fs.realpath/1.0.0:
     resolution: {integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=}
 
@@ -3572,6 +3580,13 @@ packages:
     resolution: {integrity: sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==}
     dependencies:
       tmpl: 1.0.5
+    dev: true
+
+  /memfs/3.4.1:
+    resolution: {integrity: sha512-1c9VPVvW5P7I85c35zAdEr1TD5+F11IToIHIlrVIcflfnzPkJa0ZoYEoEdYDP8KgPFoSZ/opDrUsAoZWym3mtw==}
+    engines: {node: '>= 4.0.0'}
+    dependencies:
+      fs-monkey: 1.0.3
     dev: true
 
   /memorystream/0.3.1:
@@ -4979,6 +4994,12 @@ packages:
       has-bigints: 1.0.1
       has-symbols: 1.0.3
       which-boxed-primitive: 1.0.2
+    dev: true
+
+  /unionfs/4.4.0:
+    resolution: {integrity: sha512-N+TuJHJ3PjmzIRCE1d2N3VN4qg/P78eh/nxzwHnzpg3W2Mvf8Wvi7J1mvv6eNkb8neUeSdFSQsKna0eXVyF4+w==}
+    dependencies:
+      fs-monkey: 1.0.3
     dev: true
 
   /unique-filename/1.1.1:

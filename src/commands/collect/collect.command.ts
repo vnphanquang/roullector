@@ -7,7 +7,7 @@ import {
 
 import type { CollectOptions } from '$commands/collect/collect.types';
 import { generateJSON } from '$commands/collect/generators/json';
-import { generateUtils } from '$commands/collect/generators/utils';
+import { generateRouteUtil } from '$commands/collect/generators/route';
 
 export function collect(options: CollectOptions) {
   const { outDir } = options;
@@ -16,7 +16,7 @@ export function collect(options: CollectOptions) {
       mkdirSync(outDir, { recursive: true });
     }
     generateJSON(options);
-    options.utils && generateUtils(options);
+    options.utils && generateRouteUtil(options);
   } catch (error) {
     console.error(error);
     const data = readdirSync(outDir);

@@ -1,7 +1,6 @@
 {
   "$schema": "http://json.schemastore.org/tsconfig",
   "include": ["src/**/*.ts", "src/**/*.d.ts"],
-  "exclude": ["src/**/*.test.ts"],
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "ESNext",
@@ -12,6 +11,8 @@
     "declaration": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "paths": {
       "$commands/*": ["./src/commands/*"]
     }

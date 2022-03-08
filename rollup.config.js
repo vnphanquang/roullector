@@ -14,6 +14,7 @@ import pkg from './package.json';
 const plugins = [
   typescript({
     typescript: require('ttypescript'),
+    tsconfig: resolve(__dirname, 'tsconfig.build.json'),
     tsconfigDefaults: {
       compilerOptions: {
         plugins: [
@@ -30,6 +31,8 @@ const plugins = [
 
 const external = [];
 
+const utilRoutePath = resolve(__dirname, './src/commands/collect/generators/route/source.ts');
+
 /** @type {import('rollup').RollupOptions} */
 const config = [
   {
@@ -45,7 +48,7 @@ const config = [
       copy({
         targets: [
           {
-            src: resolve(__dirname, './src/commands/collect/generators/utils/route.ts'),
+            src: utilRoutePath,
             dest: resolve(__dirname, dirname(pkg.main)),
           },
         ],
@@ -66,7 +69,7 @@ const config = [
       copy({
         targets: [
           {
-            src: resolve(__dirname, './src/commands/collect/generators/utils/route.ts'),
+            src: utilRoutePath,
             dest: resolve(__dirname, dirname(pkg.bin.roullector)),
           },
         ],
