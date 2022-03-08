@@ -4,7 +4,7 @@
  * @param args {string[]} arguments to inject
  */
 export function route(path: string, ...args: string[]): string {
-  const params = path.match(/\[[a-zA-Z]+\]/g) ?? [];
+  const params = path.match(/\[[a-zA-Z_-]+\]/g) ?? [];
   for (const i in params) {
     path = path.replace(params[i], args[i]);
   }
