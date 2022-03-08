@@ -1,7 +1,11 @@
-import { resolve } from 'path';
+import {
+  resolve,
+  dirname,
+} from 'path';
 
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolver from '@rollup/plugin-node-resolve';
+import copy from 'rollup-plugin-copy';
 import filesize from 'rollup-plugin-filesize';
 import typescript from 'rollup-plugin-typescript2';
 
@@ -28,16 +32,26 @@ const external = [];
 
 /** @type {import('rollup').RollupOptions} */
 const config = [
-  // {
-  //   input: resolve(__dirname, './src/index.ts'),
-  //   output: {
-  //     file: resolve(__dirname, pkg.main),
-  //     format: 'cjs',
-  //     sourcemap: true,
-  //   },
-  //   external,
-  //   plugins,
-  // },
+  {
+    input: resolve(__dirname, './src/index.ts'),
+    output: {
+      file: resolve(__dirname, pkg.main),
+      format: 'cjs',
+      sourcemap: true,
+    },
+    external,
+    plugins: [
+      ...plugins,
+      copy({
+        targets: [
+          {
+            src: resolve(__dirname, './src/commands/collect/generators/utils/route.ts'),
+            dest: resolve(__dirname, dirname(pkg.main)),
+          },
+        ],
+      }),
+    ],
+  },
   {
     input: resolve(__dirname, './src/cli.ts'),
     output: {
@@ -47,7 +61,17 @@ const config = [
       sourcemap: true,
     },
     external,
-    plugins,
+    plugins: [
+      ...plugins,
+      copy({
+        targets: [
+          {
+            src: resolve(__dirname, './src/commands/collect/generators/utils/route.ts'),
+            dest: resolve(__dirname, dirname(pkg.bin.roullector)),
+          },
+        ],
+      }),
+    ],
   },
 ];
 

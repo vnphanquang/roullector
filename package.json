@@ -13,7 +13,7 @@
     "prettier": "prettier --check 'src/*.{ts,js,json}'",
     "prebuild": "run-s lint:es prettier",
     "build": "rollup -c",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Quang Phan",
   "license": "MIT",
@@ -28,6 +28,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-modules-newline": "^0.0.6",
     "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.5.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
     "rollup": "^2.69.2",
@@ -38,6 +39,7 @@
     "typescript-transform-paths": "^3.3.1"
   },
   "dependencies": {
-    "commander": "^9.0.0"
+    "commander": "^9.0.0",
+    "rollup-plugin-copy": "^3.4.0"
   }
 }

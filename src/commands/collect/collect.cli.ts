@@ -52,13 +52,13 @@ export function collectCli() {
       defaultCliCollectOptions.dirkey,
     )
     .option(
-      'u, --utils',
-      'how to generate utils for building path with arguments',
+      '--no-utils',
+      'don\'t generate utils for building path with arguments',
       defaultCliCollectOptions.utils,
     )
     .option(
-      '-u, --typescript',
-      'outputs util files in typescript',
+      '--no-typescript',
+      'outputs files in javascript instead of typescript',
       defaultCliCollectOptions.typescript,
     )
     .option(
