@@ -2,7 +2,6 @@
 
 exports[`generate route utils: to javascript only: mockImplementation: javascript 1`] = `
 "export { default as AppRoutes } from './routes.json';
-}
 \\"use strict\\";
 Object.defineProperty(exports, \\"__esModule\\", { value: true });
 exports.route = void 0;

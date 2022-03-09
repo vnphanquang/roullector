@@ -2,11 +2,11 @@
   "name": "roullector",
   "version": "0.1.0",
   "description": "collect and generate map from file-based routers",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
   "type": "commonjs",
   "bin": {
-    "roullector": "bin/roullector.js"
+    "roullector": "dist/bin/roullector.js"
   },
   "scripts": {
     "lint:es": "eslint src --ext .ts",

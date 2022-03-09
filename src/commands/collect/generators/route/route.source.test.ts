@@ -1,4 +1,4 @@
-import { route } from '$commands/collect/generators/route/source';
+import { route } from '$commands/collect/generators/route/route.source';
 
 describe('map path with route util', () => {
   test('static path: return same', () => {

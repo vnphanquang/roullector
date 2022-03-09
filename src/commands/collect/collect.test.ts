@@ -16,10 +16,10 @@ import { FILES } from '$tests/fixtures/memfs';
 
 jest.mock('fs', () => {
   const fs = jest.requireActual('fs');
-  const sourcePath = './generators/route/source.ts';
+  const sourcePath = './generators/route/route.source.ts';
   const sourceOfRouteUtil = fs.readFileSync(resolve(__dirname, sourcePath), 'utf-8');
   vol.fromJSON({
-    [sourcePath]: sourceOfRouteUtil,
+    ['./generators/route.source.ts']: sourceOfRouteUtil,
   }, __dirname);
 
   return memfs;
@@ -28,7 +28,7 @@ jest.mock('fs', () => {
 const savedJSON = vol.toJSON();
 beforeEach(() => {
   vol.fromNestedJSON(FILES, defaultCollectOptions.inDir);
-  vol.fromJSON(savedJSON);
+  vol.fromJSON(savedJSON, __dirname);
 });
 afterEach(() => {
   vol.reset();

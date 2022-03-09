@@ -15,26 +15,25 @@ import { generateRouteUtil } from '$commands/collect/generators/route';
 import { defaultCollectOptions } from './collect.constants';
 
 export function collect(options: CollectOptions = defaultCollectOptions): CollectOutput {
-  const { outDir } = options;
-  const output = {
+  const { outDir, output } = options;
+  const result = {
     json: null,
     route: null,
   };
   try {
-    if (!existsSync(outDir)) {
+    if (!existsSync(outDir) && output) {
       mkdirSync(outDir, { recursive: true });
     }
-    output.json = generateJSON(options);
+    result.json = generateJSON(options);
     if (options.utils) {
-      output.route = generateRouteUtil(options);
+      result.route = generateRouteUtil(options);
     }
   } catch (error) {
     console.error(error);
-    const data = readdirSync(outDir);
-    if (data.length === 0) {
+    if (existsSync(outDir) && readdirSync(outDir).length === 0) {
       rmdirSync(outDir, { recursive: true });
     }
     throw error;
   }
-  return output;
+  return result;
 }

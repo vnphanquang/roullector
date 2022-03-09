@@ -6,37 +6,31 @@ import {
 } from 'fs';
 import { resolve } from 'path';
 
-import { transpile } from 'typescript';
-
 import { MAPPING_FILENAME } from '$commands/collect/collect.constants';
 import type { CollectOptions } from '$commands/collect/collect.types';
 
 export function generateRouteUtil(options: CollectOptions): string|null {
   const { output, outDir, typescript } = options;
-  let data = '';
 
-  const ts = readFileSync(resolve(__dirname, './source.ts'), 'utf-8');
+  const ext = typescript ? '.ts' : '.js';
 
-  if (typescript) {
-    data =
+  /**
+   * get the source in relative path to build target
+   * see rollup.config.ts for more details
+   */
+  const source = readFileSync(resolve(__dirname, '../route.source' + ext), 'utf-8');
+
+  const data =
 `export { default as AppRoutes } from './${MAPPING_FILENAME}';
-${ts}
+${source}
 `;
-  } else {
-    const js = transpile(ts);
-    data =
-`export { default as AppRoutes } from './${MAPPING_FILENAME}';
-}
-${js}
-`;
-  }
 
   let file = null;
   if (output) {
     if (!existsSync(outDir)) {
       mkdirSync(outDir, { recursive: true });
     }
-    file = resolve(outDir, 'index.' + (typescript ? 'ts' : 'js'));
+    file = resolve(outDir, 'index' + ext);
     writeFileSync( file, data, { encoding: 'utf-8' });
   } else {
     file = data;

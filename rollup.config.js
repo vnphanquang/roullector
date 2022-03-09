@@ -25,18 +25,37 @@ const plugins = [
       },
     },
   }),
-  json(),
   nodeResolver(),
   commonjs(),
+  json(),
   filesize(),
 ];
 
 const external = [];
 
-const utilRoutePath = resolve(__dirname, './src/commands/collect/generators/route/source.ts');
+const utilRoutePath = resolve(__dirname, './src/commands/collect/generators/route/route.source.ts');
 
 /** @type {import('rollup').RollupOptions} */
 const config = [
+  {
+    input: utilRoutePath,
+    output: {
+      dir: resolve(__dirname, 'dist'),
+      format: 'esm',
+    },
+    external,
+    plugins: [
+      ...plugins,
+      copy({
+        targets: [
+          {
+            src: utilRoutePath,
+            dest: resolve(__dirname, 'dist'),
+          },
+        ],
+      }),
+    ],
+  },
   {
     input: resolve(__dirname, './src/lib.ts'),
     output: {
@@ -66,17 +85,7 @@ const config = [
       sourcemap: true,
     },
     external,
-    plugins: [
-      ...plugins,
-      copy({
-        targets: [
-          {
-            src: utilRoutePath,
-            dest: resolve(__dirname, dirname(pkg.bin.roullector)),
-          },
-        ],
-      }),
-    ],
+    plugins,
   },
 ];
 
