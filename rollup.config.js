@@ -4,6 +4,7 @@ import {
 } from 'path';
 
 import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
 import nodeResolver from '@rollup/plugin-node-resolve';
 import copy from 'rollup-plugin-copy';
 import filesize from 'rollup-plugin-filesize';
@@ -24,6 +25,7 @@ const plugins = [
       },
     },
   }),
+  json(),
   nodeResolver(),
   commonjs(),
   filesize(),
@@ -36,7 +38,7 @@ const utilRoutePath = resolve(__dirname, './src/commands/collect/generators/rout
 /** @type {import('rollup').RollupOptions} */
 const config = [
   {
-    input: resolve(__dirname, './src/index.ts'),
+    input: resolve(__dirname, './src/lib.ts'),
     output: {
       file: resolve(__dirname, pkg.main),
       format: 'cjs',
@@ -56,7 +58,7 @@ const config = [
     ],
   },
   {
-    input: resolve(__dirname, './src/cli.ts'),
+    input: resolve(__dirname, './src/bin.ts'),
     output: {
       banner: '#!/usr/bin/env node',
       file: resolve(__dirname, pkg.bin.roullector),

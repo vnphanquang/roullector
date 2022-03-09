@@ -1,7 +1,7 @@
 {
   "name": "roullector",
   "version": "0.1.0",
-  "description": "Collect and generate map from file-based routers",
+  "description": "collect and generate map from file-based routers",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "type": "commonjs",
@@ -19,6 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.2",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.21",

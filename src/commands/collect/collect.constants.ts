@@ -1,7 +1,7 @@
 import type {
   CliCollectOptions,
   CollectOptions,
-} from './collect.types';
+} from '$commands/collect/collect.types';
 
 export function CamelCasify(str: string) {
   return str

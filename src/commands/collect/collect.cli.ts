@@ -3,15 +3,15 @@ import {
   Option,
 } from 'commander';
 
-import { collect } from './collect.command';
+import { collect } from '$commands/collect/collect.command';
 import {
   defaultCliCollectOptions,
   keyTransformCliToFunc,
-} from './collect.constants';
+} from '$commands/collect/collect.constants';
 import type {
   CollectOptions,
   CliCollectOptions,
-} from './collect.types';
+} from '$commands/collect/collect.types';
 
 export function collectCli() {
   return new Command('collect')
