@@ -12,7 +12,9 @@ import type {
 import { generateJSON } from '$commands/collect/generators/json';
 import { generateRouteUtil } from '$commands/collect/generators/route';
 
-export function collect(options: CollectOptions): CollectOutput {
+import { defaultCollectOptions } from './collect.constants';
+
+export function collect(options: CollectOptions = defaultCollectOptions): CollectOutput {
   const { outDir } = options;
   const output = {
     json: null,
