@@ -47,8 +47,8 @@ export function collectCli() {
       defaultCliCollectOptions.depth,
     )
     .addOption(
-      new Option( '-k, --keyTransform <variant>', 'how to transform route key')
-        .choices(['camelCase'])
+      new Option( '-t, --keyTransform <variant>', 'how to transform route key')
+        .choices(['none', 'camelCase'])
         .default(defaultCliCollectOptions.keyTransform)
     )
     .option(
@@ -92,7 +92,8 @@ export function collectCli() {
       }
 
       const output = collect(options);
-      const json = JSON.stringify(output, null, 2);
-      process.stdout.write(json);
+      if (!options.output) {
+        console.log(output);
+      }
     });
 }

@@ -46,8 +46,8 @@ export function extractRouteMapping(options: CollectOptions, inputDir: string = 
         if (options.extensions.every((ext) => !filename.endsWith(ext))) continue;
 
         // transform filename to route key
-        let routeKey = filename.replace(/\.[^/.]+$/, ''); // trim extension
-        routeKey = options.keyTransform(routeKey); // by default camelCase-ify key
+        const routeKey = filename.replace(/\.[^/.]+$/, ''); // trim extension
+        const transformed = options.keyTransform?.(routeKey); // by default camelCase-ify key
 
         let routeName = routeKey;
         if (routeKey === 'index') {
@@ -64,7 +64,7 @@ export function extractRouteMapping(options: CollectOptions, inputDir: string = 
           nextPath = '/';
         }
 
-        map[routeKey] = nextPath;
+        map[transformed] = nextPath;
       }
     }
   }

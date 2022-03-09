@@ -14,7 +14,11 @@ import { generateRouteUtil } from '$commands/collect/generators/route';
 
 import { defaultCollectOptions } from './collect.constants';
 
-export function collect(options: CollectOptions = defaultCollectOptions): CollectOutput {
+export function collect(options: Partial<CollectOptions> = {}): CollectOutput {
+  const mergedOptions: CollectOptions = {
+    ...defaultCollectOptions,
+    ...options,
+  };
   const { outDir, output } = options;
   const result = {
     json: null,
@@ -24,9 +28,9 @@ export function collect(options: CollectOptions = defaultCollectOptions): Collec
     if (!existsSync(outDir) && output) {
       mkdirSync(outDir, { recursive: true });
     }
-    result.json = generateJSON(options);
-    if (options.utils) {
-      result.route = generateRouteUtil(options);
+    result.json = generateJSON(mergedOptions);
+    if (mergedOptions.utils) {
+      result.route = generateRouteUtil(mergedOptions);
     }
   } catch (error) {
     console.error(error);

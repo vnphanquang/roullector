@@ -11,7 +11,7 @@
   "scripts": {
     "lint:es": "eslint src --ext .ts",
     "prettier": "prettier --check 'src/*.{ts,js,json}'",
-    "prebuild": "run-s lint:es prettier",
+    "prebuild": "run-p lint:es prettier",
     "build": "pnpm prebuild && rollup -c",
     "test": "jest"
   },

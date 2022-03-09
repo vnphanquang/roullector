@@ -31,7 +31,7 @@ afterEach(() => {
 });
 
 test('cli collect: default --no-output', () => {
-  const writeSpy = jest.spyOn(process.stdout, 'write').mockImplementation();
+  const writeSpy = jest.spyOn(console, 'log').mockImplementation();
   const program = collectCli().exitOverride();
   program.parse(['node', 'collect', '--no-output']);
   expect(writeSpy).toHaveBeenCalledTimes(1);

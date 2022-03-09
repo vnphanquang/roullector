@@ -16,26 +16,16 @@ export const FILES = {
     },
     'users': {
       '[id]': {
-        'index.svelte': '',
-        'types': '',
-      },
-      'assets': {
         '__layout.svelte': '',
         'index.svelte': '',
-        'photos': {
-          '[id]': {
-            'types': '',
-            'index.svelte': '',
-          },
-        },
+        'types.ts': '',
         'posts': {
-          'youtube': {
-            'types': '',
-            '[id].svelte': '',
-            '[slug].svelte': '',
-          },
+          '[post_id].svelte': '',
+          's-[slug].svelte': '',
+          'l-[short-link].svelte': '',
         },
       },
+      'index.svelte': '',
     },
   }
 };

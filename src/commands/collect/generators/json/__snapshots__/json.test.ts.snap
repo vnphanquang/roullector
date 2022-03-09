@@ -1,39 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generate JSON with a custom extension matcher: generateJSON: custom extension matcher 1`] = `"{}"`;
+exports[`generate JSON with a custom extension matcher: generateJSON: custom extension matcher 1`] = `
+"{
+  \\"admin\\": {
+    \\"users\\": {
+      \\"id\\": {
+        \\"types\\": \\"/admin/users/[id]/types\\",
+        \\"__dir\\": \\"/admin/users/[id]\\"
+      },
+      \\"__dir\\": \\"/admin/users\\"
+    },
+    \\"__dir\\": \\"/admin\\"
+  }
+}"
+`;
 
 exports[`generate JSON with custom dirkey: __customDir__: generateJSON: custom dirkey 1`] = `
 "{
   \\"admin\\": {
     \\"users\\": {
-      \\"[id]\\": {
-        \\"index\\": \\"/admin/users/[id]\\"
-      },
-      \\"assets\\": {
-        \\"index\\": \\"/admin/users/assets\\",
-        \\"photos\\": {
-          \\"[id]\\": {
-            \\"index\\": \\"/admin/users/assets/photos/[id]\\"
-          },
-          \\"__customDir__\\": \\"/admin/users/assets/photos\\"
-        },
+      \\"id\\": {
+        \\"index\\": \\"/admin/users/[id]\\",
         \\"posts\\": {
-          \\"youtube\\": {
-            \\"[id]\\": \\"/admin/users/assets/posts/youtube/[id]\\",
-            \\"[slug]\\": \\"/admin/users/assets/posts/youtube/[slug]\\",
-            \\"__customDir__\\": \\"/admin/users/assets/posts/youtube\\"
-          },
-          \\"__customDir__\\": \\"/admin/users/assets/posts\\"
+          \\"postId\\": \\"/admin/users/[id]/posts/[post_id]\\",
+          \\"lShortLink\\": \\"/admin/users/[id]/posts/l-[short-link]\\",
+          \\"sSlug\\": \\"/admin/users/[id]/posts/s-[slug]\\",
+          \\"__customDir__\\": \\"/admin/users/[id]/posts\\"
         }
       },
-      \\"__customDir__\\": \\"/admin/users\\"
+      \\"index\\": \\"/admin/users\\"
     },
     \\"__customDir__\\": \\"/admin\\"
   },
   \\"index\\": \\"/\\",
   \\"me\\": \\"/me\\",
-  \\"signIn\\": \\"/signIn\\",
-  \\"signUp\\": \\"/signUp\\"
+  \\"signIn\\": \\"/sign-in\\",
+  \\"signUp\\": \\"/sign-up\\"
 }"
 `;
 
@@ -41,17 +43,23 @@ exports[`generate JSON with custom ignorePatterns: ^_,^assets: generateJSON: cus
 "{
   \\"admin\\": {
     \\"users\\": {
-      \\"[id]\\": {
-        \\"index\\": \\"/admin/users/[id]\\"
+      \\"id\\": {
+        \\"index\\": \\"/admin/users/[id]\\",
+        \\"posts\\": {
+          \\"postId\\": \\"/admin/users/[id]/posts/[post_id]\\",
+          \\"lShortLink\\": \\"/admin/users/[id]/posts/l-[short-link]\\",
+          \\"sSlug\\": \\"/admin/users/[id]/posts/s-[slug]\\",
+          \\"__dir\\": \\"/admin/users/[id]/posts\\"
+        }
       },
-      \\"__dir\\": \\"/admin/users\\"
+      \\"index\\": \\"/admin/users\\"
     },
     \\"__dir\\": \\"/admin\\"
   },
   \\"index\\": \\"/\\",
   \\"me\\": \\"/me\\",
-  \\"signIn\\": \\"/signIn\\",
-  \\"signUp\\": \\"/signUp\\"
+  \\"signIn\\": \\"/sign-in\\",
+  \\"signUp\\": \\"/sign-up\\"
 }"
 `;
 
@@ -59,34 +67,23 @@ exports[`generate JSON with default options: generateJSON: default 1`] = `
 "{
   \\"admin\\": {
     \\"users\\": {
-      \\"[id]\\": {
-        \\"index\\": \\"/admin/users/[id]\\"
-      },
-      \\"assets\\": {
-        \\"index\\": \\"/admin/users/assets\\",
-        \\"photos\\": {
-          \\"[id]\\": {
-            \\"index\\": \\"/admin/users/assets/photos/[id]\\"
-          },
-          \\"__dir\\": \\"/admin/users/assets/photos\\"
-        },
+      \\"id\\": {
+        \\"index\\": \\"/admin/users/[id]\\",
         \\"posts\\": {
-          \\"youtube\\": {
-            \\"[id]\\": \\"/admin/users/assets/posts/youtube/[id]\\",
-            \\"[slug]\\": \\"/admin/users/assets/posts/youtube/[slug]\\",
-            \\"__dir\\": \\"/admin/users/assets/posts/youtube\\"
-          },
-          \\"__dir\\": \\"/admin/users/assets/posts\\"
+          \\"postId\\": \\"/admin/users/[id]/posts/[post_id]\\",
+          \\"lShortLink\\": \\"/admin/users/[id]/posts/l-[short-link]\\",
+          \\"sSlug\\": \\"/admin/users/[id]/posts/s-[slug]\\",
+          \\"__dir\\": \\"/admin/users/[id]/posts\\"
         }
       },
-      \\"__dir\\": \\"/admin/users\\"
+      \\"index\\": \\"/admin/users\\"
     },
     \\"__dir\\": \\"/admin\\"
   },
   \\"index\\": \\"/\\",
   \\"me\\": \\"/me\\",
-  \\"signIn\\": \\"/signIn\\",
-  \\"signUp\\": \\"/signUp\\"
+  \\"signIn\\": \\"/sign-in\\",
+  \\"signUp\\": \\"/sign-up\\"
 }"
 `;
 
@@ -94,7 +91,7 @@ exports[`generate JSON with depth of 1: generateJSON: depth 1 1`] = `
 "{
   \\"index\\": \\"/\\",
   \\"me\\": \\"/me\\",
-  \\"signIn\\": \\"/signIn\\",
-  \\"signUp\\": \\"/signUp\\"
+  \\"signIn\\": \\"/sign-in\\",
+  \\"signUp\\": \\"/sign-up\\"
 }"
 `;
