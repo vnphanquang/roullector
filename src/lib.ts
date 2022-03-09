@@ -1,1 +1,1 @@
-export { collect } from '$commands/collect/collect.command';
+export { collect } from '$commands/collect/collect';

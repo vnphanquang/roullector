@@ -12,7 +12,7 @@
     "lint:es": "eslint src --ext .ts",
     "prettier": "prettier --check 'src/*.{ts,js,json}'",
     "prebuild": "run-s lint:es prettier",
-    "build": "rollup -c",
+    "build": "pnpm prebuild && rollup -c",
     "test": "jest"
   },
   "author": "Quang Phan",

@@ -7,6 +7,8 @@ export type CollectOptions = {
   extensions: string[];
   /** patterns to ignore files */
   ignorePatterns: (string|RegExp)[];
+  /** whether to write to disk. If false will print to console instead */
+  output: boolean;
   /** route data output directory path */
   outDir: string;
   /** prints more info during operation */
@@ -21,6 +23,11 @@ export type CollectOptions = {
   utils: boolean;
   /** whether to output files in typescript */
   typescript: boolean;
+};
+
+export type CollectOutput = {
+  json: null|string;
+  route: null|string;
 };
 
 export type CliCollectOptions = Modify<CollectOptions, {

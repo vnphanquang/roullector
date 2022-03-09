@@ -91,7 +91,9 @@ const config: Config.InitialOptions = {
   }),
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
-  // modulePathIgnorePatterns: [],
+  modulePathIgnorePatterns: [
+    "<rootDir>/__tests__/fixtures"
+  ],
 
   // Activates notifications for test results
   // notify: false,

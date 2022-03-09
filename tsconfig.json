@@ -1,6 +1,6 @@
 {
   "$schema": "http://json.schemastore.org/tsconfig",
-  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "__tests__/**/*.ts"],
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "ESNext",
@@ -15,6 +15,7 @@
     "resolveJsonModule": true,
     "paths": {
       "$commands/*": ["./src/commands/*"],
+      "$tests/*": ["./__tests__/*"],
       "$pkg": ["./package.json"]
     }
   }

@@ -3,6 +3,9 @@ import type {
   CollectOptions,
 } from '$commands/collect/collect.types';
 
+export const MAPPING_FILENAME = 'routes.json';
+export const UTIL_ROUTE_FILENAME = 'route';
+
 export function CamelCasify(str: string) {
   return str
     .trim()
@@ -17,7 +20,8 @@ export function CamelCasify(str: string) {
 export const defaultCollectOptions: CollectOptions = {
   inDir: 'src/routes',
   extensions: ['.svelte'],
-  ignorePatterns: ['^_'],
+  ignorePatterns: [/^_/],
+  output: true,
   outDir: 'src/generated/routing',
   typescript: true,
   keyTransform: CamelCasify,

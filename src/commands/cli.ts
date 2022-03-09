@@ -8,9 +8,12 @@ import {
   description,
 } from '$pkg';
 
-export const cli = new Command()
+export function cli() {
+  return new Command()
   .name(name)
   .description(description)
   .version(version)
   .addCommand(collectCli());
+}
+
 

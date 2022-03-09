@@ -12,9 +12,10 @@ import { route } from '$commands/collect/generators/route/source';
 
 jest.mock('fs', () => {
   const fs = jest.requireActual('fs');
-  const sourceOfRouteUtil = fs.readFileSync(resolve(__dirname, './source.ts'), 'utf-8');
+  const sourcePath = './source.ts';
+  const sourceOfRouteUtil = fs.readFileSync(resolve(__dirname, sourcePath), 'utf-8');
   vol.fromJSON({
-    './source.ts': sourceOfRouteUtil,
+    [sourcePath]: sourceOfRouteUtil,
   }, __dirname);
   return memfs;
 });

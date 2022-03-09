@@ -2,26 +2,37 @@ import {
   readdirSync,
   mkdirSync,
   existsSync,
-  rmSync,
+  rmdirSync,
 } from 'fs';
 
-import type { CollectOptions } from '$commands/collect/collect.types';
+import type {
+  CollectOptions,
+  CollectOutput,
+} from '$commands/collect/collect.types';
 import { generateJSON } from '$commands/collect/generators/json';
 import { generateRouteUtil } from '$commands/collect/generators/route';
 
-export function collect(options: CollectOptions) {
+export function collect(options: CollectOptions): CollectOutput {
   const { outDir } = options;
+  const output = {
+    json: null,
+    route: null,
+  };
   try {
     if (!existsSync(outDir)) {
       mkdirSync(outDir, { recursive: true });
     }
-    generateJSON(options);
-    options.utils && generateRouteUtil(options);
+    output.json = generateJSON(options);
+    if (options.utils) {
+      output.route = generateRouteUtil(options);
+    }
   } catch (error) {
     console.error(error);
     const data = readdirSync(outDir);
     if (data.length === 0) {
-      rmSync(outDir, { recursive: true });
+      rmdirSync(outDir, { recursive: true });
     }
+    throw error;
   }
+  return output;
 }

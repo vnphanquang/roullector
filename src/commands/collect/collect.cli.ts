@@ -3,7 +3,7 @@ import {
   Option,
 } from 'commander';
 
-import { collect } from '$commands/collect/collect.command';
+import { collect } from '$commands/collect/collect';
 import {
   defaultCliCollectOptions,
   keyTransformCliToFunc,
@@ -30,6 +30,11 @@ export function collectCli() {
       '-x, --ignorePatterns <list>',
       'comma-separated list of filename patterns (string literal or regex) to ignore',
       defaultCliCollectOptions.ignorePatterns,
+    )
+    .option(
+      '--no-output',
+      'don\'t write to disk but print to console instead',
+      defaultCliCollectOptions.output,
     )
     .option(
       '-o, --outDir <path>',
@@ -86,6 +91,8 @@ export function collectCli() {
         );
       }
 
-      collect(options);
+      const output = collect(options);
+      const json = JSON.stringify(output, null, 2);
+      process.stdout.write(json);
     });
 }

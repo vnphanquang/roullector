@@ -11,6 +11,7 @@ import {
   resolve,
 } from 'path';
 
+import { MAPPING_FILENAME } from '$commands/collect/collect.constants';
 import type { CollectOptions } from '$commands/collect/collect.types';
 
 export type DeepObject<T> = {
@@ -71,22 +72,22 @@ export function extractRouteMapping(options: CollectOptions, inputDir: string = 
   return map;
 }
 
-export function generateJSON(options: CollectOptions) {
-  const { inDir, outDir } = options;
-  let outputPath = null;
+export function generateJSON(options: CollectOptions): string|null {
+  const { inDir, output, outDir } = options;
+  let file = null;
   if (existsSync(inDir)) {
     const map = extractRouteMapping(options);
-    outputPath = resolve(outDir, 'routes.json');
+    const data = JSON.stringify(map, null, 2); // spacing level = 2
 
-    if (!existsSync(outDir)) {
-      mkdirSync(outDir, { recursive: true });
+    if (output) {
+      if (!existsSync(outDir)) {
+        mkdirSync(outDir, { recursive: true });
+      }
+      file = resolve(outDir, MAPPING_FILENAME);
+      writeFileSync( file, data, { encoding: 'utf-8' });
+    } else {
+      file = data;
     }
-
-    writeFileSync(
-      outputPath,
-      JSON.stringify(map, null, 2), // spacing level = 2
-      { encoding: 'utf-8' },
-    );
   }
-  return outputPath;
+  return file;
 }

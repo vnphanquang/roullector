@@ -8,39 +8,39 @@ import { resolve } from 'path';
 
 import { transpile } from 'typescript';
 
+import { MAPPING_FILENAME } from '$commands/collect/collect.constants';
 import type { CollectOptions } from '$commands/collect/collect.types';
 
-export function generateRouteUtil(options: CollectOptions) {
-  const { outDir, typescript } = options;
-  let source = '';
+export function generateRouteUtil(options: CollectOptions): string|null {
+  const { output, outDir, typescript } = options;
+  let data = '';
 
   const ts = readFileSync(resolve(__dirname, './source.ts'), 'utf-8');
 
   if (typescript) {
-    source =
-`export { default as AppRoutes } from './routes.json';
+    data =
+`export { default as AppRoutes } from './${MAPPING_FILENAME}';
 ${ts}
 `;
   } else {
     const js = transpile(ts);
-    source =
-`export { default as AppRoutes } from './routes.json';
+    data =
+`export { default as AppRoutes } from './${MAPPING_FILENAME}';
 }
 ${js}
 `;
   }
 
-  const outputPath = resolve(outDir, 'index.' + (typescript ? 'ts' : 'js'));
-
-  if (!existsSync(outDir)) {
-    mkdirSync(outDir, { recursive: true });
+  let file = null;
+  if (output) {
+    if (!existsSync(outDir)) {
+      mkdirSync(outDir, { recursive: true });
+    }
+    file = resolve(outDir, 'index.' + (typescript ? 'ts' : 'js'));
+    writeFileSync( file, data, { encoding: 'utf-8' });
+  } else {
+    file = data;
   }
 
-  writeFileSync(
-    outputPath,
-    source,
-    { encoding: 'utf-8' },
-  );
-
-  return outputPath;
+  return file;
 }

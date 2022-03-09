@@ -6,53 +6,14 @@ import {
 import { defaultCollectOptions } from '$commands/collect/collect.constants';
 import type { CollectOptions } from '$commands/collect/collect.types';
 import { generateJSON } from '$commands/collect/generators/json';
+import { FILES } from '$tests/fixtures/memfs';
 
 jest.mock('fs', () => fs);
 
 const defaultOptions: CollectOptions = defaultCollectOptions;
 
 beforeEach(() => {
-  vol.fromNestedJSON({
-    '__components': {
-      'Navbar.svelte': '',
-      'Footer.svelte': '',
-    },
-    '__layout.svelte': '',
-    '__error.svelte': '',
-    'me.svelte': '',
-    'sign-in.svelte': '',
-    'sign-up.svelte': '',
-    'index.svelte': '',
-    'admin': {
-      '__components': {
-        'Admin.layout.svelte': '',
-        'types.ts': '',
-      },
-      'users': {
-        '[id]': {
-          'index.svelte': '',
-          'types': '',
-        },
-        'assets': {
-          '__layout.svelte': '',
-          'index.svelte': '',
-          'photos': {
-            '[id]': {
-              'types': '',
-              'index.svelte': '',
-            },
-          },
-          'posts': {
-            'youtube': {
-              'types': '',
-              '[id].svelte': '',
-              '[slug].svelte': '',
-            },
-          },
-        },
-      },
-    }
-  }, 'src/routes');
+  vol.fromNestedJSON(FILES, defaultCollectOptions.inDir);
 });
 
 afterEach(() => {

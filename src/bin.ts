@@ -1,3 +1,3 @@
 import { cli } from '$commands/cli';
 
-cli.parse(process.argv);
+cli().parse(process.argv);
