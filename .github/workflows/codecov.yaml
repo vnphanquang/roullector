@@ -5,6 +5,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "**.ts"
+      - ".github/workflows/codecov.yaml"
+      - "jest.config.js"
+      - "__tests__/**"
 
 jobs:
   Codecov:
@@ -24,10 +29,10 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-        continue-on-error: true
+        continue-on-error: false
       - name: Test
         run: pnpm test
-        continue-on-error: true
+        continue-on-error: false
       - name: Update code coverage to Codecov
         uses: codecov/codecov-action@v2
         with:

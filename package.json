@@ -37,6 +37,7 @@
     "prebuild": "run-p lint:es prettier",
     "build": "pnpm prebuild && rollup -c",
     "test": "jest",
+    "test:ci": "jest --ci --json --coverage --testLocationInResults --outputFile=coverage/report.json",
     "semantic-release": "semantic-release"
   },
   "author": "Quang Phan",

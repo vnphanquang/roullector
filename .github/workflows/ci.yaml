@@ -5,9 +5,17 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - ".editorconfig"
+      - ".gitignore"
+      - "CODE_OF_CONDUCT.md"
+      - "CONTRIBUTING.md"
+      - "README.md"
+      - "LICENSE"
+      - "release.config.js"
 
 jobs:
-  Lint:
+  CI:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
@@ -42,13 +50,12 @@ jobs:
         run: pnpm prettier
         continue-on-error: ${{ matrix.can-fail }}
       - name: Test
-        run: pnpm test
+        run: pnpm test:ci
         continue-on-error: ${{ matrix.can-fail }}
       - name: Update coverage info for PR
         if: ${{ github.event_name == 'pull_request' && startsWith(matrix.node, 16) }}
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          package-manager: pnpm
           skip-step: all
-          coverage-file: ./coverage/coverage-final.json
-          base-coverage-file: ./coverage/coverage-final.json
+          coverage-file: coverage/report.json
+          base-coverage-file: coverage/report.json
