@@ -1,15 +1,14 @@
-import { resolve } from 'path';
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { pathsToModuleNameMapper } = require('ts-jest/utils');
 
-import type { Config } from '@jest/types';
-import { pathsToModuleNameMapper } from 'ts-jest/utils';
-
-import { compilerOptions } from './tsconfig.json';
+const { compilerOptions } = require('./tsconfig.json');
 
 /*
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
  */
-const config: Config.InitialOptions = {
+/** @type {import('@jest/types').Config.InitialOptions} */
+const config = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -203,4 +202,4 @@ const config: Config.InitialOptions = {
 
 };
 
-export default config;
+module.exports = config;

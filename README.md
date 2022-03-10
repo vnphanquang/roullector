@@ -1,6 +1,6 @@
 # roulletor: **rou**te co**llector**
 
-[![MIT][license.badge]][license] [![codecov.badge]][codecov] [![actions.ci.badge]][actions.ci]
+[![MIT][license.badge]][license] [![codecov.badge]][codecov] [![actions.ci.badge]][actions.ci] [![actions.release.badge]][actions.release]
 
 Collect and generate route data from a file-based router such as [svelte-kit's][svelte.kit.routing]
 
@@ -250,6 +250,9 @@ Notes:
 
 [actions.ci.badge]: https://github.com/vnphanquang/roullector/actions/workflows/ci.yaml/badge.svg
 [actions.ci]: https://github.com/vnphanquang/roullector/actions/workflows/ci.yaml
+
+[actions.release.badge]: https://github.com/vnphanquang/roullector/actions/workflows/release.yaml/badge.svg
+[actions.release]: https://github.com/vnphanquang/roullector/actions/workflows/release.yaml
 
 [roullector.contributing]: ./CONTRIBUTING.md
 [roullector.collect.constants]: ./src/commands/collect/collect.constants.ts
