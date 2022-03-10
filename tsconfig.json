@@ -16,7 +16,8 @@
     "paths": {
       "$commands/*": ["./src/commands/*"],
       "$tests/*": ["./__tests__/*"],
-      "$pkg": ["./package.json"]
+      "$pkg": ["./package.json"],
+      "$utils/*": ["./src/utils/*"]
     }
   }
 }

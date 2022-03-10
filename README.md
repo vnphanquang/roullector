@@ -67,7 +67,7 @@ If you have a directory that contains some routes like below...
             |     └── posts/
             |           ├── [post_id].svelte
             |           ├── s-[slug].svelte
-            |           └── l-[short-link].svelte
+            |           └── l-[short-link]-l.svelte
             └── index.svelte
   ```
 
@@ -101,12 +101,12 @@ If you have a directory that contains some routes like below...
 {
   "admin": {
     "users": {
-      "id": {
+      "$id": {
         "index": "/admin/users/[id]",
         "posts": {
-          "postId": "/admin/users/[id]/posts/[post_id]",
-          "lShortLink": "/admin/users/[id]/posts/l-[short-link]",
-          "sSlug": "/admin/users/[id]/posts/s-[slug]",
+          "$postId": "/admin/users/[id]/posts/[post_id]",
+          "l$shortLink$L": "/admin/users/[id]/posts/l-[short-link]-l",
+          "s$slug": "/admin/users/[id]/posts/s-[slug]",
           "__dir": "/admin/users/[id]/posts"
         }
       },
@@ -166,7 +166,7 @@ You can then use the `route` helper to construct a complete path with typescript
 ```typescript
 import { AppRoutes } from '$generated/routing'; // or use relative path
 
-const path = route(AppRoutes.admin.users.id.posts.sSlug, 'user-id-123', 'slug');
+const path = route(AppRoutes.admin.users.$id.posts.s$slug, 'user-id-123', 'slug');
 // path = '/admin/users/user-id-123/posts/s-slug'
 
 // ... later
@@ -192,7 +192,7 @@ Run `npx roullector collect help` to for [configurable options](#options) in com
   | `outDir`          | `'src/generated/routing'` | output directory | -o, --outDir |
   | `depth`           | `Infinity`                | depth of directory traversal | -d, --depth |
   | `dirkey`          | `__dir`                   | key to save path for directories with no index file | -k, --dirkey |
-  | `keyTransform`    | `camelCasify`             | how to transform route key in mapping | -t, --keyTransform |
+  | `keyTransform`    | `[dollarArgify(), camelCasify()]` | how to transform route key in mapping | -t, --keyTransform (allows multiple) |
   | `utils`           | `true`                    | generate utils for building path? | --no-utils |
   | `typescript`      | `true`                    | generate files in typescript? | --no-typescript |
   | `verbose`         | `false`                   | print more info during operation (for cli only) | --verbose |
@@ -202,7 +202,12 @@ Run `npx roullector collect help` to for [configurable options](#options) in com
 
 Notes:
 
-- in command-line mode, `keyTransform` only accepts one of `camelCase | none`. See [implementation for more details][roullector.collect.constants].
+- in command-line mode, `keyTransform`
+  - only accepts these choices: `dollarArg | camelCase | none`,
+  - if you want to specify multiple transforms, provide multiple argument: `--keyTransform=dollarArg --keyTransform=camelCase`,
+  - The rationale for the current default is to enable reference the mapping without having to do something like `AppRoutes['a-kebab-case']['[id']`.
+  - To opt out completely, do `--keyTransform=none`.
+  - See [implementation for more details][roullector.collect.constants].
 - for boolean options (default to `true`), the cli equivalent is `--no-<option>`, meaning only add the flag if you want to negate the option.
 
 ### Library Usage

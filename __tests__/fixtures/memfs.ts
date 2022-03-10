@@ -22,7 +22,7 @@ export const FILES = {
         'posts': {
           '[post_id].svelte': '',
           's-[slug].svelte': '',
-          'l-[short-link].svelte': '',
+          'l-[short-link]-l.svelte': '',
         },
       },
       'index.svelte': '',

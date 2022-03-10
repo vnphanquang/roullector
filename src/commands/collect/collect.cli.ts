@@ -1,17 +1,24 @@
 import {
   Command,
+  InvalidArgumentError,
   Option,
 } from 'commander';
 
 import { collect } from '$commands/collect/collect';
 import {
-  defaultCliCollectOptions,
   keyTransformCliToFunc,
+  defaultCollectOptions,
+  defaultKeyTransformCli,
 } from '$commands/collect/collect.constants';
 import type {
   CollectOptions,
-  CliCollectOptions,
+  KeyTransformFn,
 } from '$commands/collect/collect.types';
+import { KeyTransformCli } from '$commands/collect/collect.types';
+import {
+  commaSeparatedList,
+  number,
+} from '$utils/parser';
 
 export function collectCli() {
   return new Command('collect')
@@ -19,70 +26,75 @@ export function collectCli() {
     .option(
       '-i, --inDir <path>',
       'directory path to collect',
-      defaultCliCollectOptions.inDir
+      defaultCollectOptions.inDir
     )
     .option(
       '-e, --extensions <list>',
       'comma-separated list of file extensions to collect',
-      defaultCliCollectOptions.extensions,
+      commaSeparatedList,
+      defaultCollectOptions.extensions,
     )
     .option(
       '-x, --ignorePatterns <list>',
       'comma-separated list of filename patterns (string literal or regex) to ignore',
-      defaultCliCollectOptions.ignorePatterns,
+      commaSeparatedList,
+      defaultCollectOptions.ignorePatterns,
     )
     .option(
       '--no-output',
       'don\'t write to disk but print to console instead',
-      defaultCliCollectOptions.output,
+      defaultCollectOptions.output,
     )
     .option(
       '-o, --outDir <path>',
       'outputs generated files to this folder',
-      defaultCliCollectOptions.outDir,
+      defaultCollectOptions.outDir,
     )
     .option(
       '-d, --depth <number>',
       'depth of inDir to collect',
-      defaultCliCollectOptions.depth,
+      number,
+      defaultCollectOptions.depth,
     )
     .addOption(
       new Option( '-t, --keyTransform <variant>', 'how to transform route key')
-        .choices(['none', 'camelCase'])
-        .default(defaultCliCollectOptions.keyTransform)
+        .default([])
+        .argParser<KeyTransformFn[]>((value, previous) => {
+          if (!(value in KeyTransformCli)) {
+            throw new InvalidArgumentError(`Must be one of: ${Object.keys(KeyTransformCli).join(', ')}`);
+          }
+          const valued = keyTransformCliToFunc[KeyTransformCli[value] as KeyTransformCli];
+          return [...previous, valued];
+        }),
     )
     .option(
       '-k, --dirkey <name>',
       'how to transform route key',
-      defaultCliCollectOptions.dirkey,
+      defaultCollectOptions.dirkey,
     )
     .option(
       '--no-utils',
       'don\'t generate utils for building path with arguments',
-      defaultCliCollectOptions.utils,
+      defaultCollectOptions.utils,
     )
     .option(
       '--no-typescript',
       'outputs files in javascript instead of typescript',
-      defaultCliCollectOptions.typescript,
+      defaultCollectOptions.typescript,
     )
     .option(
       '--verbose',
       'prints more info during operation',
-      defaultCliCollectOptions.verbose,
+      defaultCollectOptions.verbose,
     )
-    .action((rawOptions: CliCollectOptions) => {
-      const options: CollectOptions = {
-        ...rawOptions,
-        extensions: rawOptions.extensions?.split(',') ?? [],
-        ignorePatterns: rawOptions.ignorePatterns?.split(',') ?? [],
-        depth: Number(rawOptions.depth) || Infinity,
-        keyTransform: keyTransformCliToFunc[rawOptions.keyTransform],
-      };
+    .action((options: CollectOptions) => {
+      if (options.keyTransform.length === 0) {
+        options.keyTransform = defaultKeyTransformCli.map((k) => keyTransformCliToFunc[k]);
+      }
       if (options.verbose) {
         console.info('Running "collect" with options:');
         console.table(Object.fromEntries(
-          Object.entries(rawOptions).map(
+          Object.entries(options).map(
             ([key, value]) => ([
               key,
               { value },
