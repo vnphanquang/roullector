@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/vnphanquang/roullector/compare/v1.0.0...v1.1.0) (2022-03-10)
+
+
+### Features
+
+* **command.collect:** use custom parser to unify lib & cli options type, allow array of transformer, and fix type exports (package.json) ([4855c76](https://github.com/vnphanquang/roullector/commit/4855c761b860b0e3ef93a9b8d93725bd7278d760))
+
 # 1.0.0 (2022-03-10)
 
 
