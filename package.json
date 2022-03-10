@@ -1,19 +1,43 @@
 {
+  "$schema": "https://json.schemastore.org/package",
   "name": "roullector",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "description": "collect and generate map from file-based routers",
+  "keywords": [
+    "json",
+    "router",
+    "mapping",
+    "typescript",
+    "svelte-kit",
+    "generate"
+  ],
+  "homepage": "https://github.com/vnphanquang/roullector",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vnphanquang/roullector"
+  },
+  "bugs": {
+    "url": "https://github.com/vnphanquang/roullector/issues"
+  },
   "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
   "type": "commonjs",
   "bin": {
     "roullector": "dist/bin/roullector.js"
   },
+  "files": [
+    "dist/**/*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "lint:es": "eslint src --ext .ts",
     "prettier": "prettier --check 'src/*.{ts,js,json}'",
     "prebuild": "run-p lint:es prettier",
     "build": "pnpm prebuild && rollup -c",
-    "test": "jest"
+    "test": "jest",
+    "semantic-release": "semantic-release"
   },
   "author": "Quang Phan",
   "license": "MIT",
@@ -37,6 +61,7 @@
     "rollup": "^2.69.2",
     "rollup-plugin-filesize": "^9.1.2",
     "rollup-plugin-typescript2": "^0.31.2",
+    "semantic-release": "^19.0.2",
     "ts-jest": "^27.1.3",
     "ts-node": "^10.7.0",
     "ttypescript": "^1.5.13",
