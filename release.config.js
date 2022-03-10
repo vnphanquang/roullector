@@ -33,7 +33,6 @@ const options = {
     ],
     '@semantic-release/github',
   ],
-  dryRun: true,
 };
 
 module.exports = options;
