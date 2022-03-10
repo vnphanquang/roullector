@@ -71,5 +71,9 @@
   "dependencies": {
     "commander": "^9.0.0",
     "rollup-plugin-copy": "^3.4.0"
+  },
+  "engines": {
+    "pnpm": ">= 6.32.2",
+    "node": ">=14.0.0"
   }
 }

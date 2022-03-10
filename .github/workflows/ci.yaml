@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [12, 14, 16]
+        os: [ubuntu-latest]
+        include:
+          - can-fail: false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.1
+        with:
+          version: 6.32.2
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        continue-on-error: ${{ matrix.can-fail }}
+      - name: Build package
+        run: pnpm build
+        continue-on-error: ${{ matrix.can-fail }}
+      - name: Eslint - code lint
+        run: pnpm lint:es
+        continue-on-error: ${{ matrix.can-fail }}
+      - name: Prettier - code style
+        run: pnpm prettier
+        continue-on-error: ${{ matrix.can-fail }}
+      - name: Test
+        run: pnpm test
+        continue-on-error: ${{ matrix.can-fail }}
+      - name: Update coverage info for PR
+        if: ${{ github.event_name == 'pull_request' && startsWith(matrix.node, 16) }}
+        uses: ArtiomTr/jest-coverage-report-action@v2
+        with:
+          package-manager: pnpm
+          skip-step: all
+          coverage-file: ./coverage/coverage-final.json
+          base-coverage-file: ./coverage/coverage-final.json

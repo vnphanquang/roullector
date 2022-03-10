@@ -1,5 +1,7 @@
 # roulletor: **rou**te co**llector**
 
+[![MIT][license.badge]][license] [![codecov.badge]][codecov] [![actions.ci.badge]][actions.ci]
+
 Collect and generate route data from a file-based router such as [svelte-kit's][svelte.kit.routing]
 
 ## Table of Contents
@@ -240,10 +242,21 @@ Notes:
   </a>
 </p>
 
+[codecov.badge]: https://codecov.io/github/vnphanquang/roullector/coverage.svg?branch=main
+[codecov]: https://codecov.io/github/vnphanquang/roullector?branch=main
+
+[license.badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[license]: ./LICENSE
+
+[actions.ci.badge]: https://github.com/vnphanquang/roullector/actions/workflows/ci.yaml/badge.svg
+[actions.ci]: https://github.com/vnphanquang/roullector/actions/workflows/ci.yaml
+
 [roullector.contributing]: ./CONTRIBUTING.md
 [roullector.collect.constants]: ./src/commands/collect/collect.constants.ts
 [roullector.collect.types]: roullector/commands/collect/collect.types.ts
+
 [svelte.kit]: https://kit.svelte.dev/
 [svelte.kit.routing]: https://kit.svelte.dev/docs/routing
+
 [tweet]: https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2vnphanquang%2Froullector
 [tweet.url]: https://twitter.com/intent/tweet?text=roullector%3A%20route%20mapping%20genration%20for%20file-based%20router%20like%20svelte-kit%20and%20more%0A%0Ahttps%3A%2F%2Fgithub.com%2Fvnphanquang%2Froullector
