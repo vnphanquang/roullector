@@ -5,12 +5,12 @@ Object {
   "json": "{
   \\"admin\\": {
     \\"users\\": {
-      \\"id\\": {
+      \\"$id\\": {
         \\"index\\": \\"/admin/users/[id]\\",
         \\"posts\\": {
-          \\"postId\\": \\"/admin/users/[id]/posts/[post_id]\\",
-          \\"lShortLink\\": \\"/admin/users/[id]/posts/l-[short-link]\\",
-          \\"sSlug\\": \\"/admin/users/[id]/posts/s-[slug]\\",
+          \\"$postId\\": \\"/admin/users/[id]/posts/[post_id]\\",
+          \\"l$shortLink$L\\": \\"/admin/users/[id]/posts/l-[short-link]-l\\",
+          \\"s$slug\\": \\"/admin/users/[id]/posts/s-[slug]\\",
           \\"__dir\\": \\"/admin/users/[id]/posts\\"
         }
       },

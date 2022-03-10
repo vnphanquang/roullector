@@ -1,5 +1,3 @@
-type Modify<T, R> = Omit<T, keyof R> & R;
-
 export type CollectOptions = {
   /** input directory path to collect route data from */
   inDir: string;
@@ -14,7 +12,7 @@ export type CollectOptions = {
   /** prints more info during operation */
   verbose: boolean;
   /** how to transform route key */
-  keyTransform?: (key: string) => string;
+  keyTransform: KeyTransformFn[];
   /** depth of inDir to collect */
   depth: number;
   /** key to save path for directories with no index file */
@@ -32,9 +30,10 @@ export type CollectOutput = {
   route: null|string;
 };
 
-export type CliCollectOptions = Modify<CollectOptions, {
-  depth: string;
-  extensions?: string;
-  ignorePatterns?: string;
-  keyTransform: 'none' | 'camelCase';
-}>;
+export enum KeyTransformCli {
+  none = 'none',
+  camelCase = 'camelCase',
+  dollarArg = 'dollarArg',
+}
+
+export type KeyTransformFn = (key: string, original: string) => string;

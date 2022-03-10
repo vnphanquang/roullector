@@ -12,12 +12,13 @@ import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json';
 
-const plugins = [
+const plugins = (declaration = false) => ([
   typescript({
     typescript: require('ttypescript'),
     tsconfig: resolve(__dirname, 'tsconfig.build.json'),
     tsconfigDefaults: {
       compilerOptions: {
+        declaration,
         plugins: [
           { transform: 'typescript-transform-paths' },
           { transform: 'typescript-transform-paths', afterDeclarations: true },
@@ -29,7 +30,7 @@ const plugins = [
   commonjs(),
   json(),
   filesize(),
-];
+]);
 
 const external = [];
 
@@ -45,7 +46,7 @@ const config = [
     },
     external,
     plugins: [
-      ...plugins,
+      ...plugins(),
       copy({
         targets: [
           {
@@ -65,7 +66,7 @@ const config = [
     },
     external,
     plugins: [
-      ...plugins,
+      ...plugins(true),
       copy({
         targets: [
           {
@@ -85,7 +86,7 @@ const config = [
       sourcemap: true,
     },
     external,
-    plugins,
+    plugins: plugins(),
   },
 ];
 

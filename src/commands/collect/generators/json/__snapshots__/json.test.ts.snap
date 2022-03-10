@@ -4,7 +4,7 @@ exports[`generate JSON with a custom extension matcher: generateJSON: custom ext
 "{
   \\"admin\\": {
     \\"users\\": {
-      \\"id\\": {
+      \\"$id\\": {
         \\"types\\": \\"/admin/users/[id]/types\\",
         \\"__dir\\": \\"/admin/users/[id]\\"
       },
@@ -19,12 +19,12 @@ exports[`generate JSON with custom dirkey: __customDir__: generateJSON: custom d
 "{
   \\"admin\\": {
     \\"users\\": {
-      \\"id\\": {
+      \\"$id\\": {
         \\"index\\": \\"/admin/users/[id]\\",
         \\"posts\\": {
-          \\"postId\\": \\"/admin/users/[id]/posts/[post_id]\\",
-          \\"lShortLink\\": \\"/admin/users/[id]/posts/l-[short-link]\\",
-          \\"sSlug\\": \\"/admin/users/[id]/posts/s-[slug]\\",
+          \\"$postId\\": \\"/admin/users/[id]/posts/[post_id]\\",
+          \\"l$shortLink$L\\": \\"/admin/users/[id]/posts/l-[short-link]-l\\",
+          \\"s$slug\\": \\"/admin/users/[id]/posts/s-[slug]\\",
           \\"__customDir__\\": \\"/admin/users/[id]/posts\\"
         }
       },
@@ -43,12 +43,12 @@ exports[`generate JSON with custom ignorePatterns: ^_,^assets: generateJSON: cus
 "{
   \\"admin\\": {
     \\"users\\": {
-      \\"id\\": {
+      \\"$id\\": {
         \\"index\\": \\"/admin/users/[id]\\",
         \\"posts\\": {
-          \\"postId\\": \\"/admin/users/[id]/posts/[post_id]\\",
-          \\"lShortLink\\": \\"/admin/users/[id]/posts/l-[short-link]\\",
-          \\"sSlug\\": \\"/admin/users/[id]/posts/s-[slug]\\",
+          \\"$postId\\": \\"/admin/users/[id]/posts/[post_id]\\",
+          \\"l$shortLink$L\\": \\"/admin/users/[id]/posts/l-[short-link]-l\\",
+          \\"s$slug\\": \\"/admin/users/[id]/posts/s-[slug]\\",
           \\"__dir\\": \\"/admin/users/[id]/posts\\"
         }
       },
@@ -67,12 +67,12 @@ exports[`generate JSON with default options: generateJSON: default 1`] = `
 "{
   \\"admin\\": {
     \\"users\\": {
-      \\"id\\": {
+      \\"$id\\": {
         \\"index\\": \\"/admin/users/[id]\\",
         \\"posts\\": {
-          \\"postId\\": \\"/admin/users/[id]/posts/[post_id]\\",
-          \\"lShortLink\\": \\"/admin/users/[id]/posts/l-[short-link]\\",
-          \\"sSlug\\": \\"/admin/users/[id]/posts/s-[slug]\\",
+          \\"$postId\\": \\"/admin/users/[id]/posts/[post_id]\\",
+          \\"l$shortLink$L\\": \\"/admin/users/[id]/posts/l-[short-link]-l\\",
+          \\"s$slug\\": \\"/admin/users/[id]/posts/s-[slug]\\",
           \\"__dir\\": \\"/admin/users/[id]/posts\\"
         }
       },

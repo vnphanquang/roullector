@@ -35,7 +35,7 @@
     "lint:es": "eslint src --ext .ts",
     "prettier": "prettier --check 'src/*.{ts,js,json}'",
     "prebuild": "run-p lint:es prettier",
-    "build": "pnpm prebuild && rollup -c",
+    "build": "rollup -c",
     "test": "jest",
     "test:ci": "jest --ci --json --coverage --testLocationInResults --outputFile=coverage/report.json",
     "semantic-release": "semantic-release"

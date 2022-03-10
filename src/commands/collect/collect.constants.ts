@@ -1,24 +1,15 @@
 import type {
-  CliCollectOptions,
   CollectOptions,
+  KeyTransformFn
 } from '$commands/collect/collect.types';
+import {KeyTransformCli} from '$commands/collect/collect.types';
+import {
+  camelCasify,
+  dollarArgify,
+} from '$utils/transformer';
 
 export const MAPPING_FILENAME = 'routes.json';
 export const UTIL_ROUTE_FILENAME = 'route';
-
-export function camelCasify(str: string) {
-  return str
-    .trim()
-    .replace(/\[([a-zA-Z_-]+)\]/g, function(match, p1) {
-      return match.replace(/\[[a-zA-Z_-]+\]/g, `-${p1}`);
-    })
-    .replace(/[-_\s]+./g, function(match) {
-      return match.replace(/[-_\s]/g, '').toUpperCase();
-    })
-    .replace(/^(.)/, function(match) {
-      return match.toLowerCase();
-    });
-}
 
 export const defaultCollectOptions: CollectOptions = {
   inDir: 'src/routes',
@@ -27,22 +18,20 @@ export const defaultCollectOptions: CollectOptions = {
   output: true,
   outDir: 'src/generated/routing',
   typescript: true,
-  keyTransform: camelCasify,
+  keyTransform: [dollarArgify, camelCasify],
   verbose: false,
   depth: Infinity,
   dirkey: '__dir',
   utils: true,
 };
 
-export const defaultCliCollectOptions: CliCollectOptions = {
-  ...defaultCollectOptions,
-  extensions: defaultCollectOptions.extensions.join(','),
-  ignorePatterns: defaultCollectOptions.ignorePatterns.map((pattern) => (pattern instanceof RegExp) ? pattern.source : pattern).join(','),
-  depth: 'Infinity',
-  keyTransform: 'camelCase',
-};
+export const defaultKeyTransformCli: KeyTransformCli[] = [
+  KeyTransformCli.camelCase,
+  KeyTransformCli.dollarArg,
+];
 
-export const keyTransformCliToFunc: Record<CliCollectOptions['keyTransform'], (str) => string> = {
-  camelCase: camelCasify,
+export const keyTransformCliToFunc: Record<KeyTransformCli, KeyTransformFn> = {
   none: (str) => str,
+  camelCase: camelCasify,
+  dollarArg: dollarArgify,
 };
