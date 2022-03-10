@@ -19,6 +19,7 @@ const options = {
       },
     ],
     '@semantic-release/npm',
+    '@semantic-release/github',
     [
       '@semantic-release/git',
       {
@@ -31,7 +32,6 @@ const options = {
         message: `chore(release): <%= nextRelease.version %> - <%= new Date().toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }) %> [skip ci]`,
       },
     ],
-    '@semantic-release/github',
   ],
 };
 
