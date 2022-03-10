@@ -1,6 +1,6 @@
 <div align="center">
 
-# roulletor: **rou**te co**llector**
+# roullector: **rou**te co**llector**
 
 [![npm.badge]][npm] [![codecov.badge]][codecov] [![bundlephobia.badge]][bundlephobia] [![actions.ci.badge]][actions.ci] [![actions.release.badge]][actions.release] [![semantic-release.badge]][semantic-release] [![MIT][license.badge]][license]
 
@@ -15,7 +15,7 @@ Collect and generate route data from a file-based router such as [svelte-kit's][
 <details open>
   <summary>Show / hide</summary>
 
-- [roulletor: **rou**te co**llector**](#roulletor-route-collector)
+- [roullector: **rou**te co**llector**](#roulletor-route-collector)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
