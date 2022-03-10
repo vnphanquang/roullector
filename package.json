@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package",
   "name": "roullector",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "collect and generate map from file-based routers",
   "keywords": [
     "json",

@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/vnphanquang/roullector/compare/v1.1.0...v1.1.1) (2022-03-10)
+
+
+### Bug Fixes
+
+* **dep:** rollup-plugin-copy moved to dev dependency ([c181d27](https://github.com/vnphanquang/roullector/commit/c181d27fa20d320c737af111a2a1121e5bce6e2b))
+
 # [1.1.0](https://github.com/vnphanquang/roullector/compare/v1.0.0...v1.1.0) (2022-03-10)
 
 
