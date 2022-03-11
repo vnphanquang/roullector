@@ -61,7 +61,7 @@ Collect and generate route data from a file-based router such as [svelte-kit's][
 
 ```bash
 npm install -D roullector
-yarn add --dev roullector
+yarn add -D roullector
 pnpm install -D roullector
 ```
 
