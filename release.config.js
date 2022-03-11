@@ -20,6 +20,7 @@ const options = {
     [
       '@semantic-release/changelog',
       {
+        changelogTitle: '# Changelog',
         changelogFile: 'CHANGELOG.md',
       },
     ],
