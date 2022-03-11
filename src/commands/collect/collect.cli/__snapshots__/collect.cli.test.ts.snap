@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`cli collect: default --no-output: cli collect: default 1`] = `
+exports[`cli collect: default --no-output no-arg: cli collect: default 1`] = `
 Object {
   "json": "{
   \\"admin\\": {

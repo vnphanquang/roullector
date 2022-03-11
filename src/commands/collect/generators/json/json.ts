@@ -13,6 +13,7 @@ import {
 
 import { MAPPING_FILENAME } from '$commands/collect/collect.constants';
 import type { CollectOptions } from '$commands/collect/collect.types';
+import { compose } from '$utils/transformer';
 
 export type DeepObject<T> = {
   [key: string]: T | DeepObject<T>;
@@ -39,7 +40,7 @@ export function extractRouteMapping(options: CollectOptions, inputDir: string = 
           if (!childMap['index']) {
             childMap[options.dirkey] = nextPath;
           }
-          const transformed = options.keyTransform.reduce((acc, transform) => transform(acc, child), child);
+          const transformed = compose(child, ...options.keyTransform);
           map[transformed] = childMap;
         }
       } else {
@@ -48,7 +49,7 @@ export function extractRouteMapping(options: CollectOptions, inputDir: string = 
 
         // transform filename to route key
         const routeKey = filename.replace(/\.[^/.]+$/, ''); // trim extension
-        const transformed = options.keyTransform.reduce((acc, transform) => transform(acc, child), routeKey);
+        const transformed = compose(routeKey, ...options.keyTransform);
 
         let routeName = routeKey;
         if (routeKey === 'index') {

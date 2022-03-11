@@ -68,3 +68,5 @@ test('collect: failure in generateRouteUtil', () => {
   expect(spyGenerateJSON).toHaveBeenCalled();
   expect(spyError).toHaveBeenCalled();
 });
+
+// TODO: check other custom options
