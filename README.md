@@ -10,6 +10,9 @@
 
 Collect and generate route data from a file-based router such as [svelte-kit's][svelte.kit.routing]
 
+<details open>
+  <summary>What this does: show / hide</summary>
+
 ```svelte
 <!-- before -->
 <script lang="ts">
@@ -34,6 +37,8 @@ Collect and generate route data from a file-based router such as [svelte-kit's][
   );
 </script>
 ```
+
+</details>
 
 ## Table of Contents
 
