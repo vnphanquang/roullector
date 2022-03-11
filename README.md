@@ -19,9 +19,11 @@ Collect and generate route data from a file-based router such as [svelte-kit's][
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
+    - [Quick Start](#quick-start)
     - [Example](#example)
     - [Options](#options)
     - [Library Usage](#library-usage)
+  - [Contributing](#contributing)
 
 </details>
 
@@ -36,6 +38,16 @@ pnpm install -D roullector
 ## Usage
 
 This package was initially built and tested for [svelte-kit][svelte.kit]. But I expect it to work in other cases using the [configurable options](#options). Examples used in this docs will use [svelte-kit][svelte.kit] common route setup.
+
+### Quick Start
+
+If you are using [svelte-kit][svelte.kit] and want a no lock-in jump start, do, at project root,...
+
+```bash
+npx roullector collect
+```
+
+...and inspect the `src/generated/routing` directory for the generated goodies.
 
 ### Example
 
