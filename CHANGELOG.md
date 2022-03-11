@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/vnphanquang/roullector/compare/v1.1.1...v1.1.2) (2022-03-11)
+
+
+### Bug Fixes
+
+* **collect:** better cli default arg message & correct default cli transformer order ([185dbdf](https://github.com/vnphanquang/roullector/commit/185dbdf8977fd0894078872392244e7f55f3ebe2))
+
 ## [1.1.1](https://github.com/vnphanquang/roullector/compare/v1.1.0...v1.1.1) (2022-03-10)
 
 
