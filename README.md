@@ -10,6 +10,31 @@
 
 Collect and generate route data from a file-based router such as [svelte-kit's][svelte.kit.routing]
 
+```svelte
+<!-- before -->
+<script lang="ts">
+  import { goto } from '$app/navigation';
+
+  goto('/organiztion/org-abc/members/member-123/posts/prefix-too-much-literals-no-safety');
+  // => 404 because organiztion is a typo
+</script>
+
+<!-- after -->
+<script lang="ts">
+  import { goto } from '$app/navigation';
+  import { AppRoutes, route } from '$generated/routing';
+
+  goto(
+    route(
+      AppRoutes.organization.$orgId.members.$memberId.posts.prefix$slug,
+      'org-abc',
+      'member-123',
+      'type-support-no-typo',
+    ),
+  );
+</script>
+```
+
 ## Table of Contents
 
 <details open>
