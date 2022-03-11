@@ -29,13 +29,13 @@ Each pull request should [reference an open issue][roullector.issues.open] unles
 ## Consistent Code Style
 
 1. Commit message should follow the [Conventional Commits specification][conventionalcommits], this will enable [semantic-release][semanticrelease] to automate the workflow properly.
-2. Code should be formatted with [prettier] and linted with [eslint]. They are already integrated into the codebase. See [package.json] for relevant scripts. Your IDE or editor setup might also have extensions that further enhance the experience with these tools.
+2. Code should be formatted with [prettier] and linted with [eslint]. They are already integrated into the codebase. See [package.json] for relevant scripts. There might also exist extensions for your editor that further enhance the experience with these tools.
     - [VS Code Prettier][vscode.extension.prettier]
     - [VS Code Eslint][vscode.extension.eslint]
 
 ## Development Setup
 
-This repo uses [pnpm]. After forking and/or clone the repo, a typical workflow is
+This repo uses [pnpm]. After forking and/or cloning the repo, a typical workflow is
 
 ```bash
 pnpm install
