@@ -28,7 +28,7 @@ const config = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -36,7 +36,7 @@ const config = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
+  coverageProvider: 'v8',
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -90,9 +90,7 @@ const config = {
   }),
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
-  modulePathIgnorePatterns: [
-    "<rootDir>/__tests__/fixtures"
-  ],
+  modulePathIgnorePatterns: ['<rootDir>/__tests__/fixtures'],
 
   // Activates notifications for test results
   // notify: false,
@@ -199,7 +197,6 @@ const config = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
-
 };
 
 module.exports = config;
