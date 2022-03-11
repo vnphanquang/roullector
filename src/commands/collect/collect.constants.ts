@@ -2,7 +2,7 @@ import type {
   CollectOptions,
   KeyTransformFn
 } from '$commands/collect/collect.types';
-import {KeyTransformCli} from '$commands/collect/collect.types';
+import { KeyTransformCli } from '$commands/collect/collect.types';
 import {
   camelCasify,
   dollarArgify,
@@ -26,8 +26,8 @@ export const defaultCollectOptions: CollectOptions = {
 };
 
 export const defaultKeyTransformCli: KeyTransformCli[] = [
-  KeyTransformCli.camelCase,
   KeyTransformCli.dollarArg,
+  KeyTransformCli.camelCase,
 ];
 
 export const keyTransformCliToFunc: Record<KeyTransformCli, KeyTransformFn> = {
