@@ -12,7 +12,7 @@ import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json';
 
-const plugins = (declaration = false) => ([
+const plugins = (declaration = false) => [
   typescript({
     typescript: require('ttypescript'),
     tsconfig: resolve(__dirname, 'tsconfig.build.json'),
@@ -30,11 +30,14 @@ const plugins = (declaration = false) => ([
   commonjs(),
   json(),
   filesize(),
-]);
+];
 
 const external = [];
 
-const utilRoutePath = resolve(__dirname, './src/commands/collect/generators/route/route.source.ts');
+const utilRoutePath = resolve(
+  __dirname,
+  './src/commands/collect/generators/route/route.source.ts'
+);
 
 /** @type {import('rollup').RollupOptions} */
 const config = [
