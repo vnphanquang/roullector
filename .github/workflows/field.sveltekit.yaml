@@ -1,0 +1,32 @@
+# Field test Svelte-kit
+name: Svelte-kit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0' # runs every sunday at 00:00
+
+env:
+  OUT_DIR: src/generated/routing
+
+jobs:
+  Field:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout kit template
+        uses: actions/checkout@v3
+        with:
+          repository: sveltejs/kit-template-default
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Roullector collect
+        run: npx roullector collect
+      - name: Check existence outDir
+        run: find $OUT_DIR
+      - name: Check existence routes.json
+        run: find $OUT_DIR/routes.json
+      - name: Check existence index
+        run: find $OUT_DIR/index.ts

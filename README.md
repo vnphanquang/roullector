@@ -2,7 +2,9 @@
 
 # roullector: **rou**te co**llector**
 
-[![npm.badge]][npm] [![codecov.badge]][codecov] [![bundlephobia.badge]][bundlephobia] [![actions.ci.badge]][actions.ci] [![actions.release.badge]][actions.release] [![semantic-release.badge]][semantic-release] [![MIT][license.badge]][license]
+[![npm.badge]][npm] [![codecov.badge]][codecov] [![bundlephobia.badge]][bundlephobia] [![semantic-release.badge]][semantic-release] [![MIT][license.badge]][license]
+
+[![actions.ci.badge]][actions.ci] [![actions.release.badge]][actions.release] [![actions.field.sveltekit.badge]][actions.field.sveltekit]
 
 [![tweet]][tweet.url]
 
@@ -299,7 +301,6 @@ const transformers = [dollarArgify, camelCasify];
 
 </div>
 
-
 <p align="center">
   <a href="https://www.buymeacoffee.com/vnphanquang" target="_blank">
     <img
@@ -331,6 +332,9 @@ const transformers = [dollarArgify, camelCasify];
 
 [actions.release.badge]: https://github.com/vnphanquang/roullector/actions/workflows/release.yaml/badge.svg
 [actions.release]: https://github.com/vnphanquang/roullector/actions/workflows/release.yaml
+
+[actions.field.sveltekit.badge]: https://github.com/vnphanquang/roullector/actions/workflows/field.sveltekit.yaml/badge.svg
+[actions.field.sveltekit]: https://github.com/vnphanquang/roullector/actions/workflows/field.sveltekit.yaml
 
 [roullector.contributing]: ./CONTRIBUTING.md
 [roullector.collect.constants]: ./src/commands/collect/collect.constants.ts
