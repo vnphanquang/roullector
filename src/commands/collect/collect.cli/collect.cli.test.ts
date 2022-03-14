@@ -61,13 +61,14 @@ test('cli collect: default --no-output with all default args', () => {
     '--no-output',
     '--inDir=src/routes',
     '--extensions=.svelte',
-    '--ignorePatterns=/^_/',
+    '--ignorePatterns=^_',
     '--outDir=src/generated/routing',
     '--depth=Infinity',
     '--keyTransform=dollarArg',
     '--keyTransform=camelCase',
   ]);
   expect(writeSpy).toHaveBeenCalledTimes(1);
+  expect(writeSpy.mock.calls[writeSpy.mock.calls.length - 1][0]).toMatchSnapshot('cli collect: default');
 });
 
 test('cli collect: verbose', () => {
