@@ -6,7 +6,10 @@ import {
 } from 'memfs';
 
 import { collectCli } from '$commands/collect/collect.cli';
-import { defaultCollectOptions } from '$commands/collect/collect.constants';
+import {
+  defaultCollectOptions,
+  MAPPING_FILENAME,
+} from '$commands/collect/collect.constants';
 import { FILES } from '$tests/fixtures/memfs';
 
 jest.mock('fs', () => {
@@ -27,6 +30,18 @@ beforeEach(() => {
 });
 afterEach(() => {
   vol.reset();
+});
+
+test('cli collect: default => generate files exist', () => {
+  const writeSpy = jest.spyOn(console, 'log').mockImplementation();
+  const program = collectCli().exitOverride();
+  program.parse(['node', 'collect']);
+  expect(writeSpy).toHaveBeenCalledTimes(0);
+  const { outDir } = defaultCollectOptions;
+  const json = resolve(outDir, MAPPING_FILENAME);
+  expect(memfs.existsSync(json)).toBe(true);
+  const index = resolve(outDir, 'index.ts');
+  expect(memfs.existsSync(index)).toBe(true);
 });
 
 test('cli collect: default --no-output no-arg', () => {

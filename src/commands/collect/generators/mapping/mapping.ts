@@ -1,17 +1,13 @@
 import {
   statSync,
   readdirSync,
-  writeFileSync,
   existsSync,
-  mkdirSync,
 } from 'fs';
 import {
   basename,
   join,
-  resolve,
 } from 'path';
 
-import { MAPPING_FILENAME } from '$commands/collect/collect.constants';
 import type { CollectOptions } from '$commands/collect/collect.types';
 import { compose } from '$utils/transformer';
 
@@ -19,29 +15,37 @@ export type DeepObject<T> = {
   [key: string]: T | DeepObject<T>;
 };
 
-export function extractRouteMapping(options: CollectOptions, inputDir: string = options.inDir, currentPath = '', level = 0): DeepObject<string> {
-  const children = readdirSync(inputDir);
+export function generateMapping(options: CollectOptions, inDir: string = options.inDir, currentPath = '', level = 0): {
+  map: DeepObject<string>;
+  array: string[];
+} | null {
+  if (!existsSync(inDir)) return null;
+
+  const children = readdirSync(inDir);
 
   const map: DeepObject<string> = {};
+  const array: string[] = [];
 
   if (level <= options.depth) {
     for (const child of children) {
-      const absPath = join(inputDir, child);
+      const absPath = join(inDir, child);
       const stats = statSync(absPath);
 
       // skip if any ignore pattern matches
       const filename = basename(child);
+      console.info(`Turbo ~ file: mapping.ts ~ line 36 ~ generateMapping ~ filename`, filename);
       if (options.ignorePatterns.some(pattern => new RegExp(pattern).test(filename))) continue;
 
       if (stats.isDirectory()) {
         const nextPath = `${currentPath}/${child}`;
-        const childMap = extractRouteMapping(options, absPath, nextPath, level + 1);
+        const { map: childMap, array: childArray } = generateMapping(options, absPath, nextPath, level + 1);
         if (Object.keys(childMap).length) {
           if (!childMap['index']) {
             childMap[options.dirkey] = nextPath;
           }
           const transformed = compose(child, ...options.keyTransform);
           map[transformed] = childMap;
+          array.push(...childArray);
         }
       } else {
         // skip if extension doesn't match
@@ -67,29 +71,10 @@ export function extractRouteMapping(options: CollectOptions, inputDir: string = 
         }
 
         map[transformed] = nextPath;
+        array.push(nextPath);
       }
     }
   }
 
-  return map;
-}
-
-export function generateJSON(options: CollectOptions): string|null {
-  const { inDir, output, outDir } = options;
-  let file = null;
-  if (existsSync(inDir)) {
-    const map = extractRouteMapping(options);
-    const data = JSON.stringify(map, null, 2); // spacing level = 2
-
-    if (output) {
-      if (!existsSync(outDir)) {
-        mkdirSync(outDir, { recursive: true });
-      }
-      file = resolve(outDir, MAPPING_FILENAME);
-      writeFileSync( file, data, { encoding: 'utf-8' });
-    } else {
-      file = data;
-    }
-  }
-  return file;
+  return { map, array };
 }

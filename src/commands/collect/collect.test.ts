@@ -10,8 +10,8 @@ import {
   defaultCollectOptions,
   MAPPING_FILENAME,
 } from '$commands/collect/collect.constants';
-import * as jsonModule from '$commands/collect/generators/json/json';
-import * as routeModule from '$commands/collect/generators/route/route';
+import * as mappingModule from '$commands/collect/generators/mapping/mapping'; // import directly here to avoid re-exports problem
+import * as routeModule from '$commands/collect/generators/route/route'; // import directly here to avoid re-exports problem
 import { FILES } from '$tests/fixtures/memfs';
 
 jest.mock('fs', () => {
@@ -43,29 +43,29 @@ test('collect: default', () => {
   expect(memfs.existsSync(route)).toBe(true);
 });
 
-test('collect: failure in generateJSON', () => {
+test('collect: failure in generateMapping', () => {
   const spyError = jest.spyOn(console, 'error').mockImplementation();
   const errorMessage = 'Something went wrong in generateJSON';
-  const spyGenerateJSON = jest.spyOn(jsonModule, 'generateJSON').mockImplementationOnce(() => {
+  const spyGenerateMapping = jest.spyOn(mappingModule, 'generateMapping').mockImplementationOnce(() => {
     throw new Error(errorMessage);
   });
   expect(() => {
     collect(defaultCollectOptions);
   }).toThrow(errorMessage);
-  expect(spyGenerateJSON).toHaveBeenCalled();
+  expect(spyGenerateMapping).toHaveBeenCalled();
   expect(spyError).toHaveBeenCalled();
 });
 
 test('collect: failure in generateRouteUtil', () => {
   const spyError = jest.spyOn(console, 'error').mockImplementation();
   const errorMessage = 'Something went wrong in generateRouteUtil';
-  const spyGenerateJSON = jest.spyOn(routeModule, 'generateRouteUtil').mockImplementationOnce(() => {
+  const spyGenerateRouteUtil = jest.spyOn(routeModule, 'generateRouteUtil').mockImplementationOnce(() => {
     throw new Error(errorMessage);
   });
   expect(() => {
     collect(defaultCollectOptions);
   }).toThrow(errorMessage);
-  expect(spyGenerateJSON).toHaveBeenCalled();
+  expect(spyGenerateRouteUtil).toHaveBeenCalled();
   expect(spyError).toHaveBeenCalled();
 });
 

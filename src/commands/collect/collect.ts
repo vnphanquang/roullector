@@ -3,35 +3,57 @@ import {
   mkdirSync,
   existsSync,
   rmdirSync,
+  writeFileSync,
 } from 'fs';
+import { resolve } from 'path';
 
 import type {
   CollectOptions,
   CollectOutput,
 } from '$commands/collect/collect.types';
-import { generateJSON } from '$commands/collect/generators/json';
+import { generateMapping } from '$commands/collect/generators/mapping';
 import { generateRouteUtil } from '$commands/collect/generators/route';
 
-import { defaultCollectOptions } from './collect.constants';
+import {
+  defaultCollectOptions,
+  MAPPING_FILENAME,
+} from './collect.constants';
 
 export function collect(options: Partial<CollectOptions> = {}): CollectOutput {
   const mergedOptions: CollectOptions = {
     ...defaultCollectOptions,
     ...options,
   };
-  const { outDir, output } = options;
+  const { outDir, output, typescript } = options;
   const result = {
     json: null,
     route: null,
   };
   try {
-    if (!existsSync(outDir) && output) {
-      mkdirSync(outDir, { recursive: true });
+    const { map } = generateMapping(mergedOptions);
+
+    let json: CollectOutput['json'] = JSON.stringify(map, null, 2);
+    let route: CollectOutput['route'] = mergedOptions ? generateRouteUtil(mergedOptions) : null;
+
+    if (output) {
+      if (!existsSync(outDir)) {
+        mkdirSync(outDir, { recursive: true });
+      }
+
+      // write json
+      let file = resolve(outDir, MAPPING_FILENAME);
+      writeFileSync(file, json, { encoding: 'utf-8' });
+      json = file;
+
+      // write index
+      const ext = typescript ? '.ts' : '.js';
+      file = resolve(outDir, 'index' + ext);
+      writeFileSync(file, route, { encoding: 'utf-8' });
+      route = file;
     }
-    result.json = generateJSON(mergedOptions);
-    if (mergedOptions.utils) {
-      result.route = generateRouteUtil(mergedOptions);
-    }
+
+    result.json = json;
+    result.route = route;
   } catch (error) {
     console.error(error);
     if (existsSync(outDir) && readdirSync(outDir).length === 0) {
