@@ -246,13 +246,19 @@ Run `npx roullector collect help` to for [configurable options](#options) in com
 
 Notes:
 
-- in command-line mode, `keyTransform`
-  - only accepts these choices: `dollarArg | camelCase | none`,
-  - if you want to specify multiple transforms, provide multiple arguments: `--keyTransform=dollarArg --keyTransform=camelCase`. The transforms will be applied in the order they are provided.
-  - The rationale for the current default is to enable reference to the mapping without having to do something like `AppRoutes['a-kebab-case']['[id']`.
-  - To opt out completely, do `--keyTransform=none`.
-  - See [implementation for more details][roullector.collect.constants].
-- for boolean options (default to `true`), the cli equivalent is `--no-<option>`, meaning only add the flag if you want to negate the option.
+- for boolean options (default to `true`), the cli equivalent is `--no-<option>`, meaning only add the flag if you want to negate the option
+- for `ingorePatterns` in cli, provide the regex without `/`. Ex: `--ignorePatterns=^_` (default)
+
+#### KeyTransform
+
+The rationale for the current default is to enable reference to the mapping without having to do something like `AppRoutes['a-kebab-case']['[id']`.
+
+In command-line mode, `keyTransform`:
+
+- only accepts these choices: `dollarArg | camelCase | none`,
+- if you want to specify multiple transforms, provide multiple arguments: `--keyTransform=dollarArg --keyTransform=camelCase`. The transforms will be applied in the order they are provided.
+- To opt out completely, do `--keyTransform=none`.
+- See [implementation for more details][roullector.collect.constants].
 
 ### Library Usage
 

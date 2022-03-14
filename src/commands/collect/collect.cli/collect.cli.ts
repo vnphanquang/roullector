@@ -47,7 +47,7 @@ export function collectCli() {
         .argParser(commaSeparatedList)
         .default(
           defaultCollectOptions.ignorePatterns,
-          defaultCollectOptions.ignorePatterns.join(',')
+          defaultCollectOptions.ignorePatterns.map(p => (p as RegExp)?.source ?? p.toString()).join(',')
         )
     )
     .option(
