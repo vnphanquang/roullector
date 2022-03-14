@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generate Mapping with custom dirkey: __customDir__: generateMapping: custom dirkey 1`] = `
+Object {
+  "array": Array [
+    "/admin/users/[id]",
+    "/admin/users/[id]/posts/[post_id]",
+    "/admin/users/[id]/posts/l-[short-link]-l",
+    "/admin/users/[id]/posts/s-[slug]",
+    "/admin/users",
+    "/",
+    "/me",
+    "/sign-in",
+    "/sign-up",
+  ],
+  "map": Object {
+    "admin": Object {
+      "__customDir__": "/admin",
+      "users": Object {
+        "$id": Object {
+          "index": "/admin/users/[id]",
+          "posts": Object {
+            "$postId": "/admin/users/[id]/posts/[post_id]",
+            "__customDir__": "/admin/users/[id]/posts",
+            "l$shortLink$L": "/admin/users/[id]/posts/l-[short-link]-l",
+            "s$slug": "/admin/users/[id]/posts/s-[slug]",
+          },
+        },
+        "index": "/admin/users",
+      },
+    },
+    "index": "/",
+    "me": "/me",
+    "signIn": "/sign-in",
+    "signUp": "/sign-up",
+  },
+}
+`;
+
+exports[`generate mapping with a custom extension matcher: generateMapping: custom extension matcher 1`] = `
+Object {
+  "array": Array [
+    "/admin/users/[id]/types",
+  ],
+  "map": Object {
+    "admin": Object {
+      "__dir": "/admin",
+      "users": Object {
+        "$id": Object {
+          "__dir": "/admin/users/[id]",
+          "types": "/admin/users/[id]/types",
+        },
+        "__dir": "/admin/users",
+      },
+    },
+  },
+}
+`;
+
+exports[`generate mapping with custom ignorePatterns: ^_,^posts: generateMapping: custom ignorePatterns 1`] = `
+Object {
+  "array": Array [
+    "/admin/users/[id]",
+    "/admin/users",
+    "/",
+    "/me",
+    "/sign-in",
+    "/sign-up",
+  ],
+  "map": Object {
+    "admin": Object {
+      "__dir": "/admin",
+      "users": Object {
+        "$id": Object {
+          "index": "/admin/users/[id]",
+        },
+        "index": "/admin/users",
+      },
+    },
+    "index": "/",
+    "me": "/me",
+    "signIn": "/sign-in",
+    "signUp": "/sign-up",
+  },
+}
+`;
+
+exports[`generate mapping with default options: generateMapping: default 1`] = `
+Object {
+  "array": Array [
+    "/admin/users/[id]",
+    "/admin/users/[id]/posts/[post_id]",
+    "/admin/users/[id]/posts/l-[short-link]-l",
+    "/admin/users/[id]/posts/s-[slug]",
+    "/admin/users",
+    "/",
+    "/me",
+    "/sign-in",
+    "/sign-up",
+  ],
+  "map": Object {
+    "admin": Object {
+      "__dir": "/admin",
+      "users": Object {
+        "$id": Object {
+          "index": "/admin/users/[id]",
+          "posts": Object {
+            "$postId": "/admin/users/[id]/posts/[post_id]",
+            "__dir": "/admin/users/[id]/posts",
+            "l$shortLink$L": "/admin/users/[id]/posts/l-[short-link]-l",
+            "s$slug": "/admin/users/[id]/posts/s-[slug]",
+          },
+        },
+        "index": "/admin/users",
+      },
+    },
+    "index": "/",
+    "me": "/me",
+    "signIn": "/sign-in",
+    "signUp": "/sign-up",
+  },
+}
+`;
+
+exports[`generate mapping with depth of 1: generateMapping: depth 1 1`] = `
+Object {
+  "array": Array [
+    "/",
+    "/me",
+    "/sign-in",
+    "/sign-up",
+  ],
+  "map": Object {
+    "index": "/",
+    "me": "/me",
+    "signIn": "/sign-in",
+    "signUp": "/sign-up",
+  },
+}
+`;

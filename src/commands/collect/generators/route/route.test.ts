@@ -36,11 +36,10 @@ describe('generate route utils:', () => {
   });
 
   const generateRouteUtilWithOptions = (snapshotToMatch: string, options: Partial<CollectOptions> = {}) => {
-    const outputPath = generateRouteUtil({
+    const generated = generateRouteUtil({
       ...defaultCollectOptions,
       ...options,
     });
-    const generated = memfs.readFileSync(outputPath, 'utf-8');
     expect(generated).toMatchSnapshot(snapshotToMatch);
   };
 
