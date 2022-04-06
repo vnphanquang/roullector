@@ -52,7 +52,7 @@ See [package.json] for more details
 [roullector]: https://github.com/vnphanquang/roullector
 [roullector.issues]: https://github.com/vnphanquang/roullector/issues?q=
 [roullector.issues.open]: https://github.com/vnphanquang/roullector/issues?q=is%3Aissue+is%3Aopen
-[roullector.discussions]: https://github.com/saadeghi/daisyui/discussions
+[roullector.discussions]: https://github.com/vnphanquang/roullector/discussions
 [conventionalcommits]: https://www.conventionalcommits.org/en/v1.0.0/
 [semanticrelease]: https://github.com/semantic-release/semantic-release
 [prettier]: https://prettier.io/
